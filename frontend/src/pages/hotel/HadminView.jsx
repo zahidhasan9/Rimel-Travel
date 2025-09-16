@@ -20,12 +20,12 @@ const HadminView = () => {
       .get(`/hotels/find/${id}`)
       .then((response) => {
         setData(response.data);
-        console.log(data.HotelImg);
+        // console.log(data?.HotelImg);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   const hotelDelete = () =>{
     Swal.fire({
@@ -57,7 +57,8 @@ const HadminView = () => {
     <div>
       <div className="lg:p-24 ">
         <h1 className="ml-18 md:ml-20 lg:ml-20 text-center lg:text-left py-5 font-bold text-3xl">
-              {state.name} {data.type}
+              {state.name} 
+              {/* {data.type} */}
             </h1>
         <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
           <img

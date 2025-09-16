@@ -9,7 +9,11 @@ const HotelView = () => {
 
   const [data, setData] = useState([]);
   const location = useLocation();
-  const date= location.state;
+  // const date= location.state;
+  const date = {
+  checkInDate: "2025-09-20",
+  checkOutDate: "2025-09-25",
+};
  
   console.log(date)
   const { id } = useParams();

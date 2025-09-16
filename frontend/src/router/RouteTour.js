@@ -55,6 +55,7 @@ import AddVehicle from "../pages/vehicle/AddVehicle";
 import EditVehicle from "../pages/vehicle/EditVehicle";
 import HotelView from "../components/hotel/HotelView";
 import HotelOverView from "../components/hotel/HotelOverview";
+import HotelReservations from "../pages/HotelReservations"
 import VehicleView from "../pages/vehicle/VehicleView";
 
 import RestaurentForm from "../pages/Restaturant/RestaurantForm";
@@ -250,6 +251,7 @@ const RouteTour = () => {
       <Route path="/hoteladmin" element={<HadminView />} />
       <Route path="/hotelreserve/:id" element={<HotelReserve />} />
       <Route path="/hotelbooking" element={<HotelBook />} />
+      <Route path="/HotelReservations" element={<HotelReservations/>} />
 
       {/* Navindi */}
       <Route path="/addrestaurants" element={<RestaurentForm />} />
