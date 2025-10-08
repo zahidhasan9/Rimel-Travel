@@ -26,6 +26,7 @@ import {
   vehicleReservationColumns,
 } from "../components/datatable/datatablesource";
 import Vehiclelist from "../pages/Vehiclelist";
+import VehiclereservationView from "../pages/VehiclereservationView";
 import Activity from "../pages/special_activity/Activity";
 import PendingActivities from "../pages/special_activity/PendingActivities";
 import FilterActivities from "../pages/special_activity/FilterActivities";
@@ -180,6 +181,7 @@ const RouteTour = () => {
       <Route path="/vehicle/add" element={<AddVehicle />} />
       <Route path="/vehicle/edit/:id" element={<EditVehicle />} />
       <Route path="/vehicle/view/" element={<VehicleView />} />
+      <Route path="/reservation/view/:vehicleId" element={<VehiclereservationView/>} />
 
       {/* //ishara */}
       <Route path="/tours/home" element={<ToursHome />} />

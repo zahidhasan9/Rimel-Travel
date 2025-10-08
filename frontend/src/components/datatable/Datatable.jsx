@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Datatable = ({ columns }) => {
+  console.log(columns, "columns in datatable"); 
   const location = useLocation();
   const path = location.pathname.split("/")[1];
 
@@ -72,6 +73,10 @@ const Datatable = ({ columns }) => {
       if (path === "train") {
         const trainData = await axios.get(`${path}/get/${id}`);
         navigate(`/train/update/${id}`, { state: trainData.data });
+      }
+           if (path === "vehiclereservation") {
+        
+        navigate(`/reservation/view/${id}`);
       }
     } catch (error) {
       console.log(error);

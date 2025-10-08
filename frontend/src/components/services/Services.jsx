@@ -4,52 +4,57 @@ import { MdTour, MdEventSeat } from "react-icons/md";
 import { AiFillCar } from "react-icons/ai";
 import { BiRestaurant } from "react-icons/bi";
 import { BsCalendarEvent } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
     name: "Hotel Reservation",
     icon: <FaHotel />,
     color: "bg-gradient-to-r from-blue-400 to-blue-600",
+    link:"/hotelhome"
   },
   {
     name: "Tour Package Reservation",
     icon: <MdTour />,
     color: "bg-gradient-to-r from-green-400 to-green-600",
+    link:"/tours/home"
   },
   {
     name: "Vehicle Reservation",
     icon: <AiFillCar />,
     color: "bg-gradient-to-r from-yellow-400 to-yellow-600",
+    link:"/vehicles"
   },
   {
     name: "Train Reservation",
     icon: <FaTrain />,
     color: "bg-gradient-to-r from-purple-400 to-purple-600",
+    link:"/TrainHome"
   },
-  {
-    name: "Restaurant Reservation",
-    icon: <BiRestaurant />,
-    color: "bg-gradient-to-r from-pink-400 to-pink-600",
-    text:"upcoming"
-  },
-  {
-    name: "Event Reservation",
-    icon: <BsCalendarEvent />,
-    color: "bg-gradient-to-r from-red-400 to-red-600",
-    text:"upcoming"
-  },
-  {
-    name: "Flight Reservation",
-    icon: <FaPlane />,
-    color: "bg-gradient-to-r from-indigo-400 to-indigo-600",
-    text:"upcoming"
-  },
-  {
-    name: "Conference Booking",
-    icon: <MdEventSeat />,
-    color: "bg-gradient-to-r from-teal-400 to-teal-600",
-    text:"upcoming"
-  },
+  // {
+  //   name: "Restaurant Reservation",
+  //   icon: <BiRestaurant />,
+  //   color: "bg-gradient-to-r from-pink-400 to-pink-600",
+  //   text:"upcoming"
+  // },
+  // {
+  //   name: "Event Reservation",
+  //   icon: <BsCalendarEvent />,
+  //   color: "bg-gradient-to-r from-red-400 to-red-600",
+  //   text:"upcoming"
+  // },
+  // {
+  //   name: "Flight Reservation",
+  //   icon: <FaPlane />,
+  //   color: "bg-gradient-to-r from-indigo-400 to-indigo-600",
+  //   text:"upcoming"
+  // },
+  // {
+  //   name: "Conference Booking",
+  //   icon: <MdEventSeat />,
+  //   color: "bg-gradient-to-r from-teal-400 to-teal-600",
+  //   text:"upcoming"
+  // },
 ];
 
 const Services = () => {
@@ -72,7 +77,8 @@ const Services = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 -mx-4">
           {categories.map((category, index) => (
-            <div
+            <Link to={category.link} >
+              <div
               key={index}
               className={`mb-8 rounded-[20px] p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 ${category.color} text-white flex flex-col items-center justify-center`}
             >
@@ -82,6 +88,7 @@ const Services = () => {
               <h4 className="text-center text-lg font-semibold">{category.name}</h4>
               <h4 className="text-center text-[white] text-lg font-semibold">{category.text}</h4>
             </div>
+            </Link>
           ))}
         </div>
       </div>

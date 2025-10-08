@@ -7,11 +7,14 @@ import "jspdf-autotable";
 import moment from "moment";
 
 const Vehiclereservation = ({ columns }) => {
+
+  console.log(columns, "columns");
   return (
     <>
       <div className="flex flex-row col-span-2 lg:px-32 px-8 pt-7 pb-2 justify-between md:items-center ">
         <div className="text-3xl font-bold">Vehicle Reservations</div>
       </div>
+      
 
       <div>
         <Datatable columns={columns} />
