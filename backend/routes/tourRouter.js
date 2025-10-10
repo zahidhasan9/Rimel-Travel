@@ -48,6 +48,7 @@ const router = express.Router();
 // --- Tour Reservations Routes ---
 // GET all reservations
 router.get("/tourReservations", tourReservation.getAllReservations);
+router.get("/touruserReservations", tourReservation.getUserReservations);
 // POST a new reservation
 router.post("/tourReservations", tourReservation.bookTour);
 router.delete("/tourReservations/:id", tourReservation.deleteReservation);

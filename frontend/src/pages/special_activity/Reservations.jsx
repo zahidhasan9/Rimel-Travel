@@ -1,198 +1,363 @@
-// import { useState, useEffect } from "react";
+
+
+
+
+
+// import React, { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
 // import axios from "axios";
 
-// function Reservation({ reservation, onCancel }) {
-//   const { _id, activity, status, dateRange, timeRange } = reservation;
+// const MyReservations = () => {
+//   const { id } = useParams();
+//   const [user, setUser] = useState(null);
+//   const [vehicleReservations, setVehicleReservations] = useState([]);
+//   const [hotelReservations, setHotelReservations] = useState([]);
+//   const [tourReservations, setTourReservations] = useState([]);
+//   const [loading, setLoading] = useState(true);
 
-//   const startDate = new Date(dateRange.startDate).toLocaleDateString();
-//   const endDate = new Date(dateRange.endDate).toLocaleDateString();
-//   const startTime = timeRange.startTime;
-//   const endTime = timeRange.endTime;
-
-//   return (
-//     <div className="bg-white rounded-lg shadow-md p-4 mb-4">
-//       <div className="flex justify-between items-center mb-2">
-//         <h2 className="text-lg font-bold">{`Reservation ID: ${_id}`}</h2>
-//       </div>
-//       <p className="text-gray-600">{`Activity: ${activity?.name}`}</p>
-//       <p className="text-gray-600">{`Type: ${activity?.type}`}</p>
-//       <p className="text-gray-600">{`Status: ${status}`}</p>
-//       <p className="text-gray-600">{`Date: ${startDate} - ${endDate}`}</p>
-//       <p className="text-gray-600 mb-5">{`Time: ${startTime} - ${endTime}`}</p>
-//       <button
-//         onClick={() => onCancel(_id)}
-//         className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
-//       >
-//         Cancel
-//       </button>
-//     </div>
-//   );
-// }
-
-// function ReservationPage() {
-//   const [reservations, setReservations] = useState([]);
-
-//   useEffect(() => {
-//     axios.get("/reservations").then((response) => {
-//       setReservations(response.data);
-//     });
-//   }, []);
-
-//   const cancelReservation = (reservationId) => {
-//     console.log(reservationId);
-//     axios.delete(`reservations/${reservationId}`).then(() => {
-//       setReservations((prevReservations) =>
-//         prevReservations.filter(
-//           (reservation) => reservation._id !== reservationId
-//         )
-//       );
+//   const formatDate = (dateStr) => {
+//     if (!dateStr) return "N/A";
+//     return new Date(dateStr).toLocaleString("en-GB", {
+//       day: "2-digit",
+//       month: "short",
+//       year: "numeric",
+//       hour: "2-digit",
+//       minute: "2-digit",
+//       hour12: true,
 //     });
 //   };
 
+//   useEffect(() => {
+//     if (!id) return;
+
+//     const fetchAllReservations = async () => {
+//       try {
+//         setLoading(true);
+
+//         // 1️⃣ Fetch user first
+//         const userRes = await axios.get(`http://localhost:5000/api/users/user/${id}`);
+//         setUser(userRes.data);
+//         const userName = userRes.data.name;
+//         const userEmail = userRes.data.email;
+        
+
+//         // 2️⃣ Fetch vehicle reservations
+//         const vehicleRes = await axios.get(
+//           `http://localhost:5000/api/vehiclereservation/traveler/${id}`
+//         );
+//         setVehicleReservations(vehicleRes.data || []);
+
+//         // 3️⃣ Fetch hotel reservations using userName
+//         const hotelRes = await axios.get(
+//           `http://localhost:5000/api/hotelreservation/userreservation?userName=${userName}`
+//         );
+//         setHotelReservations(hotelRes.data || []);
+
+//         // 4️⃣ Fetch tour reservations using userEmail
+//         const tourRes = await axios.get(
+//           `http://localhost:5000/api/tours/touruserReservations?currentUser=${userEmail}`
+//         );
+//         setTourReservations(tourRes.data.data || []);
+//       } catch (err) {
+//         console.error("Error fetching reservations:", err);
+//         setVehicleReservations([]);
+//         setHotelReservations([]);
+//         setTourReservations([]);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchAllReservations();
+//   }, [id]);
+
+//   if (loading) {
+//     return <div className="text-center mt-20 text-xl text-gray-700">Loading Reservations...</div>;
+//   }
+// console.log(tourReservations,"tour");
 //   return (
-//     <>
-//       <div>
-//         <div className="bg-[#DEEFFF] flex items-center justify-between w-full flex-col lg:flex-row">
-//           <div className="p-8 pt-5 md:p-24 md:pt-5 lg:p-5">
-//             <h1 className="text-3xl md:text-3xl  font-bold uppercase  text-[#272727]">
-//               Reserve
-//               <span class="text-[#41A4FF]"> more..</span>
-//             </h1>
+//     <div className="max-w-6xl mx-auto p-6 space-y-12">
+//       {/* Vehicle Reservations */}
+//       <section>
+//         <h2 className="text-2xl font-bold mb-4">Vehicle Reservations</h2>
+//         {Array.isArray(vehicleReservations) && vehicleReservations.length > 0 ? (
+//           <div className="grid md:grid-cols-2 gap-6">
+//             {vehicleReservations.map((res) => (
+//               <div key={res._id} className="bg-white shadow-md rounded-xl p-6">
+//                 <p><span className="font-semibold">User:</span> {user?.name || "N/A"}</p>
+//                 <p><span className="font-semibold">Location:</span> {res.location || "N/A"}</p>
+//                 <p><span className="font-semibold">Price:</span> {res.price || "N/A"} tk</p>
+//                 <p><span className="font-semibold">Vehicle Number:</span> {res.vehicleNumber || "N/A"}</p>
+//                 <p><span className="font-semibold">Booked Date:</span> {formatDate(res.date)}</p>
+//                 <p><span className="font-semibold">Pickup Date:</span> {formatDate(res.pickupDate)}</p>
+//                 <p><span className="font-semibold">Return Date:</span> {formatDate(res.returnDate)}</p>
+//               </div>
+//             ))}
 //           </div>
-//         </div>
-//       </div>
-//       <div
-//         className="max-w-xl mx-auto py-4 px-6 mt-10 "
-//         style={{ marginBottom: "25rem" }}
-//       >
-//         <h1 className="text-2xl font-bold mb-4">My Reservations</h1>
-//         {reservations.map((reservation) => (
-//           <Reservation
-//             key={reservation._id}
-//             reservation={reservation}
-//             onCancel={cancelReservation}
-//           />
-//         ))}
-//       </div>
-//     </>
+//         ) : (
+//           <p>No vehicle reservations found.</p>
+//         )}
+//       </section>
+
+//       {/* Hotel Reservations */}
+//       <section>
+//         <h2 className="text-2xl font-bold mb-4">Hotel Reservations</h2>
+//         {Array.isArray(hotelReservations) && hotelReservations.length > 0 ? (
+//           <div className="grid md:grid-cols-2 gap-6">
+//             {hotelReservations.map((res) => (
+//               <div key={res._id} className="bg-white shadow-md rounded-xl p-6">
+//                 <p><span className="font-semibold">Hotel Name:</span> {res.hotelName || "N/A"}</p>
+//                 <p><span className="font-semibold">User:</span> {res.userName || "N/A"}</p>
+//                 <p><span className="font-semibold">Check In Date:</span> {formatDate(res.checkInDate)}</p>
+//                 <p><span className="font-semibold">Check Out Date:</span> {formatDate(res.checkOutDate)}</p>
+//                 <p><span className="font-semibold">Total Days:</span> {res.totalDays || "N/A"}</p>
+//                 <p><span className="font-semibold">Booked Date:</span> {formatDate(res.date || res.createdAt)}</p>
+//                 <p><span className="font-semibold">Total Price:</span> {res.totalPrice || "N/A"} tk</p>
+//               </div>
+//             ))}
+//           </div>
+//         ) : (
+//           <p>No hotel reservations found.</p>
+//         )}
+//       </section>
+
+//       {/* Tour Reservations */}
+//       <section>
+//         <h2 className="text-2xl font-bold mb-4">Tour Reservations</h2>
+//         {Array.isArray(tourReservations) && tourReservations?.length > 0 ? (
+//           <div className="grid md:grid-cols-2 gap-6">
+//             {tourReservations?.map((res) => (
+//               <div key={res._id} className="bg-white shadow-md rounded-xl p-6">
+//                 <p><span className="font-semibold">User:</span> {res.firstName+" "+res.lastName || "N/A"}</p>
+//                 <p><span className="font-semibold">Date:</span> {formatDate(res.date || res.reservationDate)}</p>
+//                 <p><span className="font-semibold">Guest No:</span> {res.guestCount || res.description || "N/A"}</p>
+//                 <p><span className="font-semibold">City:</span> {res.city|| res.description || "N/A"}</p>
+//                 <p><span className="font-semibold">Price:</span> {res.price|| res.description || "N/A"} tk</p>
+//               </div>
+//             ))}
+//           </div>
+//         ) : (
+//           <p>No tour reservations found.</p>
+//         )}
+//       </section>
+//     </div>
 //   );
-// }
+// };
 
-// export default ReservationPage;
+// export default MyReservations;
 
 
-import { useState, useEffect } from "react";
 
-function Reservation({ reservation, onCancel }) {
-  const { _id, activity, status, dateRange, timeRange } = reservation;
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import jsPDF from "jspdf";
 
-  const startDate = new Date(dateRange.startDate).toLocaleDateString();
-  const endDate = new Date(dateRange.endDate).toLocaleDateString();
-  const startTime = timeRange.startTime;
-  const endTime = timeRange.endTime;
+const MyReservations = () => {
+  const { id } = useParams();
+  const [user, setUser] = useState(null);
+  const [vehicleReservations, setVehicleReservations] = useState([]);
+  const [hotelReservations, setHotelReservations] = useState([]);
+  const [tourReservations, setTourReservations] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-4">
-      <div className="flex justify-between items-center mb-2">
-        <h2 className="text-lg font-bold">{`Reservation ID: ${_id}`}</h2>
-      </div>
-      <p className="text-gray-600">{`Activity: ${activity?.name}`}</p>
-      <p className="text-gray-600">{`Type: ${activity?.type}`}</p>
-      <p className="text-gray-600">{`Status: ${status}`}</p>
-      <p className="text-gray-600">{`Date: ${startDate} - ${endDate}`}</p>
-      <p className="text-gray-600 mb-5">{`Time: ${startTime} - ${endTime}`}</p>
-      <button
-        onClick={() => onCancel(_id)}
-        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
-      >
-        Cancel
-      </button>
-    </div>
-  );
-}
-
-function ReservationPage() {
-  const [reservations, setReservations] = useState([]);
-
-  useEffect(() => {
-    // Static demo data
-    const demoReservations = [
-      {
-        _id: "RES-10234",
-        activity: { name: "Mountain Hiking", type: "Outdoor" },
-        status: "Approved",
-        dateRange: {
-          startDate: "2025-10-10",
-          endDate: "2025-10-12",
-        },
-        timeRange: { startTime: "08:00 AM", endTime: "04:00 PM" },
-      },
-      {
-        _id: "RES-10235",
-        activity: { name: "Yoga Session", type: "Wellness" },
-        status: "Pending",
-        dateRange: {
-          startDate: "2025-11-02",
-          endDate: "2025-11-02",
-        },
-        timeRange: { startTime: "06:00 AM", endTime: "07:30 AM" },
-      },
-      {
-        _id: "RES-10236",
-        activity: { name: "Photography Workshop", type: "Learning" },
-        status: "Declined",
-        dateRange: {
-          startDate: "2025-09-28",
-          endDate: "2025-09-28",
-        },
-        timeRange: { startTime: "10:00 AM", endTime: "02:00 PM" },
-      },
-    ];
-
-    // Fake delay (just for realism)
-    setTimeout(() => {
-      setReservations(demoReservations);
-    }, 1000);
-  }, []);
-
-  const cancelReservation = (reservationId) => {
-    setReservations((prev) =>
-      prev.filter((reservation) => reservation._id !== reservationId)
-    );
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "N/A";
+    return new Date(dateStr).toLocaleString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchAllReservations = async () => {
+      try {
+        setLoading(true);
+        const userRes = await axios.get(`http://localhost:5000/api/users/user/${id}`);
+        setUser(userRes.data);
+        const userName = userRes.data.name;
+        const userEmail = userRes.data.email;
+
+        const vehicleRes = await axios.get(
+          `http://localhost:5000/api/vehiclereservation/traveler/${id}`
+        );
+        setVehicleReservations(vehicleRes.data || []);
+
+        const hotelRes = await axios.get(
+          `http://localhost:5000/api/hotelreservation/userreservation?userName=${userName}`
+        );
+        setHotelReservations(hotelRes.data || []);
+
+        const tourRes = await axios.get(
+          `http://localhost:5000/api/tours/touruserReservations?currentUser=${userEmail}`
+        );
+        setTourReservations(tourRes.data.data || []);
+      } catch (err) {
+        console.error("Error fetching reservations:", err);
+        setVehicleReservations([]);
+        setHotelReservations([]);
+        setTourReservations([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllReservations();
+  }, [id]);
+
+  // PDF generation with proper page breaks
+  const downloadPDF = () => {
+    const doc = new jsPDF("p", "mm", "a4"); // portrait, mm units, A4 page
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 15;
+    let y = 20;
+
+    doc.setFontSize(18);
+    doc.text(`Reservations of ${user?.name || "User"}`, pageWidth / 2, y, { align: "center" });
+    y += 10;
+
+    const addLine = (text) => {
+      doc.setFontSize(12);
+      const lineHeight = 7;
+      const splittedText = doc.splitTextToSize(text, pageWidth - margin * 2);
+      splittedText.forEach((line) => {
+        if (y > 280) {
+          doc.addPage();
+          y = 20;
+        }
+        doc.text(line, margin, y);
+        y += lineHeight;
+      });
+      y += 3;
+    };
+
+    // Vehicle Reservations
+    if (vehicleReservations.length > 0) {
+      doc.setFontSize(16);
+      doc.text("Vehicle Reservations", margin, y);
+      y += 8;
+
+      vehicleReservations.forEach((res, idx) => {
+        addLine(
+          `${idx + 1}. Location: ${res.location || "N/A"}, Price: ${res.price || "N/A"} tk, Vehicle No: ${
+            res.vehicleNumber || "N/A"
+          }, Booked: ${formatDate(res.date)}, Pickup: ${formatDate(res.pickupDate)}, Return: ${formatDate(res.returnDate)}`
+        );
+      });
+      y += 5;
+    }
+
+    // Hotel Reservations
+    if (hotelReservations.length > 0) {
+      doc.setFontSize(16);
+      doc.text("Hotel Reservations", margin, y);
+      y += 8;
+
+      hotelReservations.forEach((res, idx) => {
+        addLine(
+          `${idx + 1}. Hotel: ${res.hotelName || "N/A"}, Check In: ${formatDate(res.checkInDate)}, Check Out: ${formatDate(res.checkOutDate)}, Total Days: ${
+            res.totalDays || "N/A"
+          }, Total Price: ${res.totalPrice || "N/A"} tk`
+        );
+      });
+      y += 5;
+    }
+
+    // Tour Reservations
+    if (tourReservations.length > 0) {
+      doc.setFontSize(16);
+      doc.text("Tour Reservations", margin, y);
+      y += 8;
+
+      tourReservations.forEach((res, idx) => {
+        addLine(
+          `${idx + 1}. Name: ${res.firstName || ""} ${res.lastName || ""}, City: ${res.city || "N/A"}, Guests: ${res.guestCount || "N/A"}, Price: ${res.price || "N/A"} tk, Date: ${formatDate(
+            res.date || res.reservationDate
+          )}`
+        );
+      });
+    }
+
+    doc.save(`Reservations_${user?.name || "User"}.pdf`);
+  };
+
+  if (loading) {
+    return <div className="text-center mt-20 text-xl text-gray-700">Loading Reservations...</div>;
+  }
+
   return (
-    <>
-      <div>
-        <div className="bg-[#DEEFFF] flex items-center justify-between w-full flex-col lg:flex-row">
-          <div className="p-8 pt-5 md:p-24 md:pt-5 lg:p-5">
-            <h1 className="text-3xl md:text-3xl font-bold uppercase text-[#272727]">
-              Reserve<span className="text-[#41A4FF]"> more..</span>
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="max-w-xl mx-auto py-4 px-6 mt-10"
-        style={{ marginBottom: "25rem" }}
+    <div className="max-w-6xl mx-auto p-6 space-y-6">
+      <button
+        onClick={downloadPDF}
+        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 mb-6"
       >
-        <h1 className="text-2xl font-bold mb-4">My Reservations</h1>
+        Download PDF
+      </button>
 
-        {reservations.length === 0 ? (
-          <p className="text-gray-500">Loading your reservations...</p>
-        ) : (
-          reservations.map((reservation) => (
-            <Reservation
-              key={reservation._id}
-              reservation={reservation}
-              onCancel={cancelReservation}
-            />
-          ))
-        )}
-      </div>
-    </>
+      {/* Vehicle */}
+      <section>
+        <h2 className="text-2xl font-bold mb-4">Vehicle Reservations</h2>
+        {vehicleReservations.length > 0 ? (
+          <div className="grid md:grid-cols-2 gap-6">
+            {vehicleReservations.map((res) => (
+              <div key={res._id} className="bg-white shadow-md rounded-xl p-6">
+                <p><span className="font-semibold">User:</span> {user?.name}</p>
+                <p><span className="font-semibold">Location:</span> {res.location || "N/A"}</p>
+                <p><span className="font-semibold">Price:</span> {res.price || "N/A"} tk</p>
+                <p><span className="font-semibold">Vehicle Number:</span> {res.vehicleNumber || "N/A"}</p>
+                <p><span className="font-semibold">Booked Date:</span> {formatDate(res.date)}</p>
+                <p><span className="font-semibold">Pickup Date:</span> {formatDate(res.pickupDate)}</p>
+                <p><span className="font-semibold">Return Date:</span> {formatDate(res.returnDate)}</p>
+              </div>
+            ))}
+          </div>
+        ) : <p>No vehicle reservations found.</p>}
+      </section>
+
+      {/* Hotel */}
+      <section>
+        <h2 className="text-2xl font-bold mb-4">Hotel Reservations</h2>
+        {hotelReservations.length > 0 ? (
+          <div className="grid md:grid-cols-2 gap-6">
+            {hotelReservations.map((res) => (
+              <div key={res._id} className="bg-white shadow-md rounded-xl p-6">
+                <p><span className="font-semibold">Hotel Name:</span> {res.hotelName || "N/A"}</p>
+                <p><span className="font-semibold">Check In:</span> {formatDate(res.checkInDate)}</p>
+                <p><span className="font-semibold">Check Out:</span> {formatDate(res.checkOutDate)}</p>
+                <p><span className="font-semibold">Total Days:</span> {res.totalDays || "N/A"}</p>
+                <p><span className="font-semibold">Total Price:</span> {res.totalPrice || "N/A"} tk</p>
+              </div>
+            ))}
+          </div>
+        ) : <p>No hotel reservations found.</p>}
+      </section>
+
+      {/* Tour */}
+      <section>
+        <h2 className="text-2xl font-bold mb-4">Tour Reservations</h2>
+        {tourReservations.length > 0 ? (
+          <div className="grid md:grid-cols-2 gap-6">
+            {tourReservations.map((res) => (
+              <div key={res._id} className="bg-white shadow-md rounded-xl p-6">
+                <p><span className="font-semibold">Name:</span> {res.firstName+" "+res.lastName}</p>
+                <p><span className="font-semibold">City:</span> {res.city || "N/A"}</p>
+                <p><span className="font-semibold">Guests:</span> {res.guestCount || "N/A"}</p>
+                <p><span className="font-semibold">Price:</span> {res.price || "N/A"} tk</p>
+                <p><span className="font-semibold">Date:</span> {formatDate(res.date || res.reservationDate)}</p>
+              </div>
+            ))}
+          </div>
+        ) : <p>No tour reservations found.</p>}
+      </section>
+    </div>
   );
-}
+};
 
-export default ReservationPage;
+export default MyReservations;
+

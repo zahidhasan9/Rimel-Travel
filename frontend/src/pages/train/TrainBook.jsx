@@ -58,7 +58,7 @@ const TrainBook = () => {
                             <p className="text-gray-600 text-sm">{singleTrain.noOfSeats} Seats Available</p>
                         </div>
                         <div className="flex items-center mb-6">
-                            <h1 className="text-2xl font-bold text-gray-800">{singleTrain.price}</h1>
+                            <h1 className="text-2xl font-bold text-gray-800">{singleTrain.price} Tk</h1>
                         </div>
                         <Link to="/train/book/passengerDet">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-[350px] lg:w-[300px]">

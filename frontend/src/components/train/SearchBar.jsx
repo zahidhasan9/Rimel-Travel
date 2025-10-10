@@ -32,13 +32,14 @@ const SearchBar = ()=>{
                         value={from} onChange={(e)=>{setFrom(e.target.value)}}
                 ></input>
                     <datalist id='from'>
-                        <option value='Colombo Fort'/>
-                        <option value = 'Galle'/>
-                        <option value = 'Matara'/>
-                        <option value = 'Badulla'/>
-                        <option value = 'Hatton'/>
-                        <option value = 'Batticaloa'/>
-                        <option value = 'Vavuniya'/>
+                        <option value="Dhaka">Dhaka</option>
+                              <option value="Chittagong">Chittagong</option>
+                              <option value="Khulna">Khulna</option>
+                              <option value="Rajshahi">Rajshahi</option>
+                              <option value="Barisal">Barisal</option>
+                              <option value="Sylhet">Sylhet</option>
+                              <option value="Rangpur">Rangpur</option>
+                              <option value="Mymensingh">Mymensingh</option>
                     </datalist>
             </div>
 
@@ -48,13 +49,14 @@ const SearchBar = ()=>{
                     value={to} onChange={(e)=>{setTo(e.target.value)}}
             ></input>
                 <datalist id='to'>
-                <option value='Colombo Fort'/>
-                        <option value = 'Galle'/>
-                        <option value = 'Matara'/>
-                        <option value = 'Badulla'/>
-                        <option value = 'Hatton'/>
-                        <option value = 'Batticaloa'/>
-                        <option value = 'Vavuniya'/>
+                <option value="Dhaka">Dhaka</option>
+                      <option value="Chittagong">Chittagong</option>
+                      <option value="Khulna">Khulna</option>
+                      <option value="Rajshahi">Rajshahi</option>
+                      <option value="Barisal">Barisal</option>
+                      <option value="Sylhet">Sylhet</option>
+                      <option value="Rangpur">Rangpur</option>
+                      <option value="Mymensingh">Mymensingh</option>
             </datalist>
           </div>
 

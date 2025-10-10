@@ -77,7 +77,7 @@ const reservation = async (req, res, next) => {
 
     const allDates = getDatesInRange(checkInDate, checkOutDate);
 
-    // প্রতিটি room এ unavailableDates push হবে
+    
     await Promise.all(
       roomIds.map(async (roomId) => {
         await Room.updateOne(
@@ -111,6 +111,23 @@ const getAllReservation = async (req, res, next) => {
     }
   };
 
+
+ const getUserReservation = async (req, res, next) => {
+  try {
+    // const { userName } = req.body;
+ const { userName } = req.query;
+    if (!userName) {
+      return res.status(400).json({ message: "userName is required" });
+    }
+
+    // শুধুমাত্র userName এর data filter করা
+    const hotels = await hotelReservation.find({ userName });
+
+    res.status(200).json(hotels);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 // const deleteReservation = async (req, res, next) => {
 //   const { id } = req.params; // /hotelreservation/:id
 
@@ -134,7 +151,7 @@ const deleteReservation = async (req, res, next) => {
 
     const allDates = getDatesInRange(reservation.checkInDate, reservation.checkOutDate);
 
-    // প্রতিটি booked room থেকে unavailableDates ফিল্টার করা হবে
+    
     await Promise.all(
       reservation.roomIds.map(async (roomId) => {
         await Room.updateOne(
@@ -161,5 +178,6 @@ const deleteReservation = async (req, res, next) => {
 module.exports = {
     reservation,
     getAllReservation,
-    deleteReservation
+    deleteReservation,
+    getUserReservation
   };

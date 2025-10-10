@@ -569,7 +569,7 @@ const HotelReserve = ({ setOpen, hotelId, checkInDate, checkOutDate, date_differ
 
               <div className="flex items-center mb-4">
                 <div className="font-semibold mr-2">Price per day:</div>
-                <div className="text-gray-600">Rs.{item.price}</div>
+                <div className="text-gray-600">Tk.{item.price}</div>
               </div>
 
               <div className="grid grid-cols-3 gap-4">
@@ -605,7 +605,7 @@ const HotelReserve = ({ setOpen, hotelId, checkInDate, checkOutDate, date_differ
 
         {/* Total Payment */}
         <div className="flex justify-between items-center mt-6">
-          <div className="font-bold text-lg">Total Payment: Rs.{totalPrice}</div>
+          <div className="font-bold text-lg">Total Payment: Tk.{totalPrice}</div>
         </div>
 
         <button

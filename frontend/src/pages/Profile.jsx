@@ -16,7 +16,7 @@ const Profile = () => {
   const createdatnew = moment(createdat).fromNow();
   const updatedatnew = moment(updatedat).fromNow();
 
-  console.log(user);
+  console.log(user,"user");
 
   const navigate = useNavigate();
 
@@ -88,7 +88,7 @@ const Profile = () => {
             )}
             {user.type === "traveler" && (
               <>
-                <Link to="/my-reservations">
+                <Link to={`/my-reservations/${user._id}`}>
                   <button className="bg-blue-500 py-3 px-6 rounded-lg text-white font-bold hover:bg-blue-600 transition duration-200 ease-in-out">
                     My Reservations
                   </button>

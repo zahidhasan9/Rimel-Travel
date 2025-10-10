@@ -6,6 +6,8 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="w-full bg-gray-900 py-16 px-8 md:px-36 text-gray-300">
@@ -50,20 +52,23 @@ const Footer = () => {
           <h4 className="text-xl font-semibold text-[#41A4FF]">Reservations</h4>
           <ul className="flex flex-col gap-2 text-gray-400">
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              Hotels
+              <Link to="/hotelhome"> Hotels</Link>
             </li>
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              Tour Packages
+              
+              <Link to="/tours/home"> Tour Packages</Link>
             </li>
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              Vehicles
+              
+              <Link to="/vehicles"> Vehicles</Link>
             </li>
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              Restaurants
+              
+              <Link to="/TrainHome"> Train</Link>
             </li>
-            <li className="hover:text-white transition duration-300 cursor-pointer">
+            {/* <li className="hover:text-white transition duration-300 cursor-pointer">
               Events
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -72,16 +77,17 @@ const Footer = () => {
           <h4 className="text-xl font-semibold text-[#41A4FF]">Support</h4>
           <ul className="flex flex-col gap-2 text-gray-400">
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              Contact Us
+             <Link to="/contactus"> Contact Us</Link>
             </li>
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              About Us
+              <Link to="/aboutus"> About Us</Link>
             </li>
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              FAQ
+              <Link to="/faq"> FAQ</Link>
             </li>
             <li className="hover:text-white transition duration-300 cursor-pointer">
-              Privacy Policy
+             
+               <Link to="/policy">  Privacy Policy</Link>
             </li>
           </ul>
         </div>

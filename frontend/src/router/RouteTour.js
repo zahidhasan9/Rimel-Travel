@@ -3,6 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Admin from "../pages/Admin";
+import AboutUs from "../pages/AboutUs";
+import Blog from "../pages/Blog"
+import FAQ from "../pages/Faq";
+import Policy from "../pages/Policy";
 import VehicleHome from "../pages/vehicle/VehicleHome";
 import VehicleBook from "../pages/vehicle/VehicleBook";
 import VehiclePayment from "../pages/vehicle/VehiclePayment";
@@ -98,6 +102,10 @@ const RouteTour = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/blog" element={<Blog/>} />
+      <Route path="/faq" element={<FAQ/>} />
+      <Route path="/policy" element={<Policy/>} />
       <Route path="/login" element={<Login />} />
       <Route path="/reset-password" element={<ResetPassword />} />
 
@@ -214,7 +222,7 @@ const RouteTour = () => {
       <Route path="/events" element={<FilterActivities />} />
       <Route path="/activities/:id" element={<Activity />} />
       <Route path="/my-activities" element={<MyActivities />} />
-      <Route path="/my-reservations" element={<ReservationPage />} />
+      <Route path="/my-reservations/:id" element={<ReservationPage />} />
 
       {/*sehan*/}
 

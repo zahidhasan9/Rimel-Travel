@@ -78,4 +78,33 @@ const deleteReservation = async (req, res) => {
   }
 };
 
-module.exports = { bookTour, getAllReservations,deleteReservation };
+
+
+const getUserReservations = async (req, res) => {
+  try {
+    const { currentUser } = req.query; // বা req.params.currentUser, আপনার structure অনুযায়ী
+
+    if (!currentUser) {
+      return res.status(400).json({
+        status: "unsuccess",
+        message: "currentUser is required",
+      });
+    }
+
+    // currentUser দিয়ে filter
+    const userReservations = await tourReserve.find({ currentUser });
+
+    res.status(200).json({
+      status: "success",
+      data: userReservations,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      status: "unsuccess",
+      message: err.message,
+    });
+  }
+};
+
+module.exports = { bookTour, getAllReservations,deleteReservation,getUserReservations };

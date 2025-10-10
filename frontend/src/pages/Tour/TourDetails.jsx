@@ -416,6 +416,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HeroTour from "./HeroTour";
 import TourNav from "../../components/navbar/TourNav";
 import { AiFillStar } from "react-icons/ai";
@@ -463,8 +464,8 @@ const TourDetails = () => {
       return;
     }
 
-    if (phone.length !== 10) {
-      Swal.fire("Oops...", "Enter a valid 10-digit mobile number", "error");
+    if (phone.length !== 11) {
+      Swal.fire("Oops...", "Enter a valid 11-digit mobile number", "error");
       return;
     }
 
@@ -484,6 +485,8 @@ const TourDetails = () => {
       date,
       phone,
       guestCount,
+      city:allTours.cities,
+      price: allTours.price,
     };
 
     try {
@@ -563,15 +566,15 @@ const TourDetails = () => {
               className="rounded-xl shadow-md hover:scale-105 transition-transform"
             />
             <div className="flex flex-col gap-4">
-              <button className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
+              <Link to='/' className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Download Brochure
-              </button>
-              <button className="bg-gradient-to-r from-green-400 to-teal-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
+              </Link>
+              {/* <Link to='/blog' className="bg-gradient-to-r from-green-400 to-teal-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Ask A Question
-              </button>
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
+              </Link> */}
+              <Link to='/faq' className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Check FAQ
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -582,7 +585,7 @@ const TourDetails = () => {
           <p className="text-xl mb-4">
             Starting from{" "}
             <span className="text-blue-600 font-extrabold text-4xl">
-              ${allTours.price}
+              tk {allTours.price}
             </span>
             /Person
           </p>

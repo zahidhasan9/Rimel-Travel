@@ -26,6 +26,12 @@ const tourBook = new Schema({
     type: Number,
     required: [true, "Must provide a guest count"],
   },
+  city: {
+    type: String,
+  },
+  price: {
+    type: String,
+  },
 });
 
 const tourReservation = mongoose.model("tour Reservation", tourBook);

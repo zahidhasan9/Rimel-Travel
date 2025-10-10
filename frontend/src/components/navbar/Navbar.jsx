@@ -77,9 +77,15 @@ const Navbar = () => {
                 </Menu.Items>
               </Transition>
             </Menu>
-
+            
+            <Link to="/aboutus" className="hover:text-[#41A4FF] transition">
+              About us
+            </Link>
             <Link to="/contactus" className="hover:text-[#41A4FF] transition">
               Contact us
+            </Link>
+            <Link to="/blog" className="hover:text-[#41A4FF] transition">
+              Blog
             </Link>
           </div>
 

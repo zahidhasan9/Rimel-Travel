@@ -28,19 +28,19 @@ const HotelCard = () => {
                   </h2>
                   <p className="font-light text-gray-500 mb-2">{item.city}</p>
                   <p className="font-medium text-gray-900 mb-2">
-                    Starting from Rs.{item.cheapestPrice}
+                    Starting from Tk.{item.cheapestPrice}
                   </p>
                   <div className="flex items-center">
                   <Link to ={`/hotelOverview/${item._id}`}>
                     <button className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
-                      OverView
-                    </button>
-                    </Link>
-                     <Link to ={`/hotel/${item._id}`}>
-                    <button className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
                       View
                     </button>
                     </Link>
+                     {/* <Link to ={`/hotel/${item._id}`}>
+                    <button className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
+                      View
+                    </button>
+                    </Link> */}
                   </div>
                 </div>
               </div>

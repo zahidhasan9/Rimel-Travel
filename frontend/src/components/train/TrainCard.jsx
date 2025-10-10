@@ -33,7 +33,7 @@ const TrainCard = (props)=>{
             <p> {props.noOfSeats} seats are available</p>
         </div>
         <div className='flex items-center justify-center'>
-            <h1 className='text-2xl font-bold py-3'>{props.price}</h1>
+            <h1 className='text-2xl font-bold py-3'> tk {props.price}</h1>
         </div>
         <Link to ={`/train/book/${props.id}`} className='w-full'>
             <button className='bg-[#41A4FF] text-white rounded-md font-bold py-3 w-full'>Book Now</button>

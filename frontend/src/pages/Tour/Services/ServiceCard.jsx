@@ -124,7 +124,7 @@ const ServiceCard = () => {
       </Link>
     </h3>
     <p className="text-gray-600 mb-2">{tour.duration} days</p>
-    <p className="text-gray-700 font-semibold mt-2">From ${tour.price}</p>
+    <p className="text-gray-700 font-semibold mt-2">From Tk {tour.price}</p>
   </div>
 
   {/* Button */}
