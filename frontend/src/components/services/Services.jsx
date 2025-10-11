@@ -1,5 +1,6 @@
 import React from "react";
-import { FaHotel, FaTrain, FaPlane } from "react-icons/fa";
+import { FaHotel, FaTrain, FaPlane ,FaBlogger} from "react-icons/fa";
+import { FcAbout } from "react-icons/fc";
 import { MdTour, MdEventSeat } from "react-icons/md";
 import { AiFillCar } from "react-icons/ai";
 import { BiRestaurant } from "react-icons/bi";
@@ -30,6 +31,18 @@ const categories = [
     icon: <FaTrain />,
     color: "bg-gradient-to-r from-purple-400 to-purple-600",
     link:"/TrainHome"
+  },
+  {
+    name: "About",
+    icon: <FcAbout />,
+    color: "bg-gradient-to-r from-indigo-400 to-indigo-600",
+    link:"/aboutus"
+  },
+   {
+    name: "Blog",
+    icon: <FaBlogger />,
+    color: "bg-gradient-to-r from-red-400 to-red-600",
+    link:"/blog"
   },
   // {
   //   name: "Restaurant Reservation",
