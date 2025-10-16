@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Branding */}
           <Link to="/" className="text-3xl font-bold text-[#41A4FF]">
-            UR Travel
+            Trip Vibe
           </Link>
 
           {/* Desktop Menu */}

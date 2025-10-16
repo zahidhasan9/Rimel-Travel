@@ -28,7 +28,7 @@ const SearchBar = ()=>{
             <form className='flex flex-wrap lg:flex-row justify-between px-0'>
             <div className='w-full md:w-1/2 lg:w-1/2 '>
                 <label for = 'from' className='py-3'>From</label> <br/>
-                <input type='text' list='from' className='border rounded-md  p-3 lg:w-[300px] w-full' placeholder='Colombo Fort'
+                <input type='text' list='from' className='border rounded-md  p-3 lg:w-[300px] w-full' placeholder='Dhaka'
                         value={from} onChange={(e)=>{setFrom(e.target.value)}}
                 ></input>
                     <datalist id='from'>
@@ -45,7 +45,7 @@ const SearchBar = ()=>{
 
           <div className='w-full md:w-1/2 lg:w-1/2 '>
             <label for = 'to' className='py-3'>To</label><br/>
-            <input type='text' list='to' className='border rounded-md  p-3 lg:w-[300px] w-full' placeholder='Colombo Fort'
+            <input type='text' list='to' className='border rounded-md  p-3 lg:w-[300px] w-full' placeholder='Sylhet'
                     value={to} onChange={(e)=>{setTo(e.target.value)}}
             ></input>
                 <datalist id='to'>

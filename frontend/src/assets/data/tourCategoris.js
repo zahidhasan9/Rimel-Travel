@@ -2,7 +2,7 @@ const tourCategories = [
   {
     id: "01",
     title: "Hills & Trekking",
-    links: "hillsandtrekking",
+    links: "hikingandtrekking",
     photo:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/19/4e/ad/sajek-was-unexplored.jpg?w=1000&h=-1&s=1", // Sajek Valley
     description:
@@ -38,7 +38,7 @@ const tourCategories = [
   {
     id: "05",
     title: "Special Experiences",
-    links: "special",
+    links: "specialtours",
     photo:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/4c/92/8a/caption.jpg?w=900&h=700&s=1", // Sundarbans boat tour
     description:

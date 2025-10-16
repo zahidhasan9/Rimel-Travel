@@ -31,6 +31,7 @@ const VehicleHome = () => {
               capacity={item.capacity}
               vehicleMainImg={item.vehicleMainImg}
               id = {item._id}
+              location={item.location}
             />
             
           ))}

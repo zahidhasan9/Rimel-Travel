@@ -173,7 +173,9 @@ import { useParams } from "react-router-dom";
 import jsPDF from "jspdf";
 
 const MyOneTicket = () => {
-  const id = useParams().id.toString();
+  // const id = useParams().id.toString();
+  const { id } = useParams();
+  console.log(id,'id')
 
   const [singlePassenger, setSinglePassenger] = useState({});
   const [singleTrain, setSingleTrain] = useState({});
@@ -205,30 +207,60 @@ const MyOneTicket = () => {
   }, [singlePassenger.trainId]);
 console.log(singleTrain,'singleTrain');
   // Generate Ticket PDF
-  const generateReport = () => {
-    const doc = new jsPDF();
+ const generateReport = () => {
+  const doc = new jsPDF();
 
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.text("Train E-Ticket", 85, 20);
+  // Title
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.text("🚆 Train E-Ticket", 105, 20, { align: "center" });
 
-    doc.setFontSize(12);
-    doc.setTextColor(60);
+  // Passenger & Train Info
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.setTextColor(40);
 
-    doc.text(`Passenger: ${singlePassenger.firstName} ${singlePassenger.LastName}`, 20, 40);
-    doc.text(`Train: ${singleTrain.trainName || "N/A"} (${singleTrain.classType?.toUpperCase()})`, 20, 50);
-    doc.text(`From: ${singleTrain.from || FROM}    To: ${singleTrain.to || TO}`, 20, 60);
-    doc.text(`Departure: ${singleTrain.date} - ${singleTrain.arrivalTime || DTIME}`, 20, 70);
-    doc.text(`Seat(s): ${singlePassenger.noOfTickets || 1}`, 20, 80);
-    doc.text(`Price: ${singleTrain.price || singlePassenger.price} ৳`, 20, 90);
-    doc.text(`Baggage Limit: ${singleTrain.MaxBagage || "2"} pcs`, 20, 100);
-    doc.text(`Status: ${isPaid ? "Paid" : "Unpaid"}`, 20, 110);
+  let y = 40; // starting y position
+  const lineHeight = 10;
 
-    doc.setFontSize(10);
-    doc.text("Thank you for booking with BD Express 🚆", 60, 130);
+  doc.text(`Passenger Name: ${singlePassenger.firstName || "N/A"} ${singlePassenger.LastName || ""}`, 20, y);
+  y += lineHeight;
 
-    doc.save("Train_Ticket.pdf");
-  };
+  doc.text(`Train: ${singleTrain.trainName || "N/A"} (${singleTrain.classType?.toUpperCase() || "Class"})`, 20, y);
+  y += lineHeight;
+
+  doc.text(`From: ${singleTrain.from || FROM || "N/A"}`, 20, y);
+  y += lineHeight;
+
+  doc.text(`To: ${singleTrain.to || TO || "N/A"}`, 20, y);
+  y += lineHeight;
+
+  doc.text(`Departure: ${singleTrain.date || "N/A"} - ${singleTrain.depatureTime || DTIME || "N/A"}`, 20, y);
+  y += lineHeight;
+
+  doc.text(`Arrival: ${singleTrain.date || "N/A"} - ${singleTrain.arrivalTime || ATIME || "N/A"}`, 20, y);
+  y += lineHeight;
+
+  doc.text(`Seats: ${singlePassenger.noOfTickets || 1}`, 20, y);
+  y += lineHeight;
+
+  doc.text(`Price: ${singleTrain.price || singlePassenger.price || 0} ৳`, 20, y);
+  y += lineHeight;
+
+  doc.text(`Baggage Limit: ${singleTrain.MaxBagage || 2} pcs`, 20, y);
+  y += lineHeight;
+
+  doc.text(`Status: ${isPaid ? "Paid" : "Unpaid"}`, 20, y);
+  y += lineHeight + 10;
+
+  // Footer
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "italic");
+  doc.text("Thank you for booking with BD Express 🚆", 105, y, { align: "center" });
+
+  doc.save("Train_Ticket.pdf");
+};
+
 
   return (
     <div className="max-w-2xl mx-auto mt-10 bg-gradient-to-br from-blue-50 to-white shadow-lg rounded-2xl p-8">

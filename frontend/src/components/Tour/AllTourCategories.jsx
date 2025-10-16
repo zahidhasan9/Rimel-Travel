@@ -16,25 +16,45 @@ const Beach = () => {
   const [filterdTours, setTour] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getTours = async () => {
-    try {
-      const response = await axios.get("/tours");
-      const tours = response.data.filter((tour) => {
-        const category = tour.category.toLowerCase().replace(/\s+/g, "");
-        console.log("category", category);
-        return category === title;
-      });
+  // const getTours = async () => {
+  //   try {
+  //     const response = await axios.get("/tours");
+  //     const tours = response.data.filter((tour) => {
+  //       const category = tour.category.toLowerCase().replace(/\s+/g, "");
+  //       console.log("category", category);
+  //       return category === title;
+  //     });
 
-      console.log(tours);
-      setTour(tours);
-    } catch (err) {
-      console.log(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  getTours();
+  //     console.log(tours);
+  //     setTour(tours);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // getTours();
 
+  useEffect(() => {
+    const getTours = async () => {
+      try {
+        const response = await axios.get("/tours");
+        const tours = response.data.filter((tour) => {
+          const category = tour.category.toLowerCase().replace(/\s+/g, "");
+          console.log("category", category);
+          return category === title;
+        });
+
+        setTour(tours);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getTours();
+  }, [title]); // <-- dependency যোগ করা জরুরি
   return (
     <div>
       <HeroTour />
@@ -90,7 +110,7 @@ const Beach = () => {
                     </div>
                     <div className="flex flex-row mr-2 space-x-3 justify-between">
                       <p className="text-sm text-left p-2 font-bold">
-                        From ${tours.price}
+                        From {tours.price} Tk
                       </p>
                       <button
                         type="button"

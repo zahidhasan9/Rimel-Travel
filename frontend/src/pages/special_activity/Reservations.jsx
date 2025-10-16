@@ -449,7 +449,7 @@ const MyReservations = () => {
       y += 8;
       vehicleReservations.forEach((res, idx) => {
         addLine(
-          `${idx + 1}. Location: ${res.location || "N/A"}, Price: ${res.price || "N/A"} tk, Vehicle No: ${res.vehicleNumber || "N/A"}, Booked: ${formatDate(res.date)}, Pickup: ${formatDate(res.pickupDate)}, Return: ${formatDate(res.returnDate)}`
+          `${idx + 1}. Location: ${res.location || "N/A"}, Price: ${res.price || "N/A"} tk, Vehicle No: ${res.vehicleNumber || "N/A"}, Booked: ${formatDate(res.date)}, Pickup: ${formatDate(res.pickupDate)}, Return: ${formatDate(res.returnDate)}, Driver Requirement: ${res.needDriver ? "Yes" : "No"}`
         );
       });
       y += 5;
@@ -525,6 +525,7 @@ const MyReservations = () => {
                   <p><span className="font-semibold text-gray-600">Vehicle No:</span> {res.vehicleNumber || "N/A"}</p>
                   <p><span className="font-semibold text-gray-600">Pickup:</span> {formatDate(res.pickupDate)}</p>
                   <p><span className="font-semibold text-gray-600">Return:</span> {formatDate(res.returnDate)}</p>
+                  <p><span className="font-semibold text-gray-600">Driver Requirement:</span> {res.needDriver ? "Yes" : "No"}</p>
                 </div>
               </div>
             ))}

@@ -1,40 +1,70 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {  FaStar } from "react-icons/fa";
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaStar, FaMapMarkerAlt, FaUsers, FaGasPump, FaCogs } from "react-icons/fa";
 
 const VehicleCard = (props) => {
-
   return (
-    <div className='flex flex-col w-[300px] md:w-[300px] items-center border shadow-lg m-auto mb-8  rounded-lg bg-white'>
-        <img src = {`vehicle/images/${props.vehicleMainImg}`} alt='vehicle' className='rounded-lg'/>
-        
-        <h1 className='py-2 text-1xl font-bold border-b'>{props.brand + " " + props.model}</h1>
-        {/* <div className='flex items-center'>
-            <div className='flex'>
-            <FaStar/>
-            <FaStar/>
-            <FaStar/>
-            <FaStar/>
-            <FaStar/>
-            </div>
-            <p className='px-2'>4.5</p>
+    <div className="flex flex-col w-[300px] bg-white rounded-2xl shadow-md hover:shadow-2xl transition-shadow duration-300 overflow-hidden border border-gray-100">
+      {/* Vehicle Image */}
+      <div className="relative w-full h-[180px]">
+        <img
+          src={`vehicle/images/${props.vehicleMainImg}`}
+          alt={props.model}
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+
+      {/* Vehicle Details */}
+      <div className="p-4 flex flex-col gap-2">
+        <h1 className="text-lg font-semibold text-gray-800">
+          {props.brand} {props.model}
+        </h1>
+
+        {/* Optional rating */}
+        {/* <div className="flex items-center text-yellow-500 text-sm">
+          {[...Array(5)].map((_, i) => (
+            <FaStar key={i} />
+          ))}
+          <span className="text-gray-600 ml-2">4.5</span>
         </div> */}
-        <div className='flex '>
-            <p className=''>{props.capacity} People</p>
-            <p className='px-4'>{props.transmissionType}</p>
+
+        <div className="flex items-center justify-between text-gray-600 text-sm">
+          <div className="flex items-center gap-1">
+            <FaUsers className="text-[#41A4FF]" />
+            <span>{props.capacity} People</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <FaCogs className="text-[#41A4FF]" />
+            <span>{props.transmissionType}</span>
+          </div>
         </div>
-        <p>{props.fuelType}</p>
-        <div className='flex items-center justify-center'>
-        <h1 className='text-2xl font-bold py-3'>Tk. {props.price}</h1>
-        <h1 className=''>/per day</h1>
+
+        <div className="flex items-center justify-between text-gray-600 text-sm">
+          <div className="flex items-center gap-1">
+            <FaGasPump className="text-[#41A4FF]" />
+            <span>{props.fuelType}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <FaMapMarkerAlt className="text-[#41A4FF]" />
+            <span>{props.location}</span>
+          </div>
         </div>
-        <Link to ={`/vehicle/book/${props.id}`} className='w-full'>
-        <button className='bg-[#41A4FF] text-white rounded-md font-medium py-3 w-full'  >Reserve Now</button>
+
+        <div className="flex items-baseline justify-center gap-1 mt-3">
+          <h1 className="text-2xl font-bold text-gray-800">
+            Tk. {props.price}
+          </h1>
+          <span className="text-gray-500 text-sm">/per day</span>
+        </div>
+
+        <Link to={`/vehicle/book/${props.id}`} className="mt-4">
+          <button className="bg-[#41A4FF] hover:bg-[#1d8fff] text-white font-medium w-full py-2.5 rounded-lg transition-all duration-300">
+            Reserve Now
+          </button>
         </Link>
+      </div>
     </div>
+  );
+};
 
-    
-  )
-}
-
-export default VehicleCard
+export default VehicleCard;

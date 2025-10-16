@@ -104,7 +104,7 @@ const nav_links = [
     display: "Explore Bangladesh",
   },
   {
-    path: "/hillsandtrekking",
+    path: "/hikingandtrekking",
     display: "Hill & Trekking",
   },
   {
@@ -120,7 +120,7 @@ const nav_links = [
     display: "Cultural Heritage",
   },
   {
-    path: "/special",
+    path: "/specialtours",
     display: "Special Tours",
   },
   {

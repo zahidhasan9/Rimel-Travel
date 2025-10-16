@@ -98,6 +98,11 @@ const Profile = () => {
                     My Train Tickets
                   </button>
                 </Link>
+                 {/* <Link to={`/myTickets/${user._id}`}>
+                  <button className="bg-blue-500 py-3 px-6 rounded-lg text-white font-bold hover:bg-blue-600 transition duration-200 ease-in-out">
+                    Train Tickets
+                  </button>
+                </Link> */}
               </>
             )}
 

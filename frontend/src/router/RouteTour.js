@@ -31,6 +31,7 @@ import {
 } from "../components/datatable/datatablesource";
 import Vehiclelist from "../pages/Vehiclelist";
 import VehiclereservationView from "../pages/VehiclereservationView";
+import  Trainreservasion  from "../pages/Trainreservasion";
 import Activity from "../pages/special_activity/Activity";
 import PendingActivities from "../pages/special_activity/PendingActivities";
 import FilterActivities from "../pages/special_activity/FilterActivities";
@@ -205,7 +206,7 @@ const RouteTour = () => {
       <Route path="/sunandbeach" element={<AllTourCategories />} />
       <Route path="/hikingandtrekking" element={<AllTourCategories />} />
       <Route path="/wildsafari" element={<AllTourCategories />} />
-      <Route path="/special" element={<AllTourCategories />} />
+      <Route path="/specialtours" element={<AllTourCategories />} />
       <Route path="/cultural" element={<AllTourCategories />} />
       <Route path="/festival" element={<AllTourCategories />} />
 
@@ -238,6 +239,7 @@ const RouteTour = () => {
       <Route path="/adminTrain/reviewPanel" element={<ReviewPanel />} />
       <Route path="/train/MyTickets" element={<MyTickets />} />
       <Route path="/train/MyTickets/:id" element={<MyOneTicket />} />
+       <Route path="/myTickets/:id" element={<Trainreservasion />} />
 
       {/* navindi */}
       <Route path="/addrestaurant" element={<RestaurentForm />} />

@@ -112,7 +112,7 @@ const AddVehicle = () => {
         <form onSubmit={sendData} encType='multipart/form-data'>
             
             <label for className='lg:text-lg text-left'>Vehicle Owner's Name</label>
-            <input type='text' className='border rounded-lg w-full p-2 mb-6 mt-2' placeholder='Yasiru Deshan' onChange={(e) => setOwnerName(e.target.value) } required/>
+            <input type='text' className='border rounded-lg w-full p-2 mb-6 mt-2' placeholder='Abul kalam' onChange={(e) => setOwnerName(e.target.value) } required/>
 
             <label for className='lg:text-lg text-left'>Vehicle Brand Name</label>
             <input type='text' className='border rounded-lg w-full p-2 mb-6 mt-2' placeholder='Honda' onChange={(e) => setBrandName(e.target.value) } required/>
@@ -172,16 +172,19 @@ const AddVehicle = () => {
           <div className='mb-6 text-[#41A4FF]'>{countWords(description)}/300</div>
 
           <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900"> Location </label>
-          <input type='text' list='city' className='border rounded-lg w-full p-2 mb-6 mt-2' placeholder='Colombo' onChange={(e) => setLocation(e.target.value) } required/>
+          <input type='text' list='city' className='border rounded-lg w-full p-2 mb-6 mt-2' placeholder='Sylhet' onChange={(e) => setLocation(e.target.value) } required/>
 
           <datalist id='city'>
             
-            <option value='Colombo'></option>
-            <option value='Galle'></option>
-            <option value='Kandy'></option>
-            <option value='Jaffna'></option>
-            <option value='Matara'></option>
-            <option value='Negombo'></option>
+            <option value="Dhaka">Dhaka</option>
+            <option value="Chattogram">Chattogram</option>
+            <option value="Rajshahi">Rajshahi</option>
+            <option value="Khulna">Khulna</option>
+            <option value="Barishal">Barishal</option>
+            <option value="Sylhet">Sylhet</option>
+            <option value="Rangpur">Rangpur</option>
+            <option value="Mymensingh">Mymensingh</option>
+
           </datalist>
 
           
