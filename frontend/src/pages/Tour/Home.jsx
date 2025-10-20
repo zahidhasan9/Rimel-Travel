@@ -139,9 +139,9 @@ const Home = () => {
       </div>
 
       {/* customer form */}
-      <div>
+      {/* <div>
         <CustomForm />
-      </div>
+      </div> */}
       <div>
         <HiddenPlaces />
       </div>

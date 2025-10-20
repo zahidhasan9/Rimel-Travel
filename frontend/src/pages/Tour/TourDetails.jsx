@@ -437,10 +437,15 @@ const TourDetails = () => {
   const [phone, setPhone] = useState("");
   const [guestCount, setGuests] = useState("");
 
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiry, setExpiry] = useState("");
+  const [cvv, setCvv] = useState("");
+
+
   const [allTours, setTour] = useState({});
   const { user } = useContext(AuthContext);
   const currentUser = user?.email || "";
-
+  const totalPrice = allTours.price * guestCount;
   useEffect(() => {
     const getTours = async () => {
       try {
@@ -486,7 +491,7 @@ const TourDetails = () => {
       phone,
       guestCount,
       city:allTours.cities,
-      price: allTours.price,
+      price: totalPrice,
     };
 
     try {
@@ -580,67 +585,138 @@ const TourDetails = () => {
         </div>
 
         {/* Booking Form */}
-        <div className="lg:w-1/2 bg-white rounded-3xl shadow-2xl p-8 mt-10 lg:mt-0">
-          <h2 className="text-3xl font-bold mb-6 text-center">Book Your Tour</h2>
-          <p className="text-xl mb-4">
-            Starting from{" "}
-            <span className="text-blue-600 font-extrabold text-4xl">
-              tk {allTours.price}
-            </span>
-            /Person
-          </p>
-          <p className="text-lg mb-4">
-            Cities:{" "}
-            <span className="text-blue-500 font-semibold">{allTours.cities}</span>
-          </p>
-          <form className="space-y-4" onSubmit={inputHandler}>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="First Name"
-                className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
-                value={firstName}
-                onChange={(e) => setFname(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
-                value={lastName}
-                onChange={(e) => setLname(e.target.value)}
-              />
-            </div>
-            <input
-              type="date"
-              min={new Date().toISOString().split("T")[0]}
-              className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
+       <div className="lg:w-1/2 bg-white rounded-3xl shadow-2xl p-8 mt-10 lg:mt-0">
+  <h2 className="text-3xl font-bold mb-6 text-center">Book Your Tour</h2>
+
+  <p className="text-xl mb-4">
+    Starting from{" "}
+    <span className="text-blue-600 font-extrabold text-4xl">
+      tk {allTours.price}
+    </span>
+    /Person
+  </p>
+
+  <p className="text-lg mb-4">
+    Cities:{" "}
+    <span className="text-blue-500 font-semibold">{allTours.cities}</span>
+  </p>
+
+  <form className="space-y-4" onSubmit={inputHandler}>
+    <div className="grid grid-cols-2 gap-4">
+      <input
+        type="text"
+        placeholder="First Name"
+        className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
+        value={firstName}
+        onChange={(e) => setFname(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
+        value={lastName}
+        onChange={(e) => setLname(e.target.value)}
+      />
+    </div>
+
+    <input
+      type="date"
+      min={new Date().toISOString().split("T")[0]}
+      className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
+      value={date}
+      onChange={(e) => setDate(e.target.value)}
+    />
+
+    <div className="grid grid-cols-2 gap-4">
+      <input
+        type="tel"
+        placeholder="Phone Number"
+        className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="No of Guests"
+        className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
+        value={guestCount}
+        onChange={(e) => setGuests(e.target.value)}
+      />
+    </div>
+
+    {/* ---- Payment Section ---- */}
+    <div className="mt-6 bg-gray-50 border rounded-2xl p-4 shadow-inner">
+      <h3 className="text-lg font-semibold mb-3 text-gray-700">
+        Payment Details
+      </h3>
+
+      <div className="space-y-4">
+        {/* Card Number */}
+        <div className="relative">
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9\s]{13,19}"
+            maxLength="19"
+            placeholder="Card Number (e.g. 4242 4242 4242 4242)"
+            className="border rounded-xl p-3 w-full pl-12 focus:ring-2 focus:ring-blue-400 tracking-wider"
+            value={cardNumber}
+            onChange={(e) => setCardNumber(e.target.value)}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 text-gray-400 absolute left-4 top-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M2.25 9h19.5M3 5.25h18a.75.75 0 01.75.75v12a.75.75 0 01-.75.75H3A.75.75 0 012.25 18V6a.75.75 0 01.75-.75z"
             />
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              <input
-                type="number"
-                placeholder="No of Guests"
-                className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400"
-                value={guestCount}
-                onChange={(e) => setGuests(e.target.value)}
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold shadow hover:bg-blue-700 transition"
-            >
-              Book Now
-            </button>
-          </form>
+          </svg>
         </div>
+
+        {/* Expiry + CVV */}
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder="MM/YY"
+            maxLength="5"
+            className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400 text-center"
+            value={expiry}
+            onChange={(e) => setExpiry(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="CVV"
+            maxLength="3"
+            className="border rounded-xl p-3 w-full focus:ring-2 focus:ring-blue-400 text-center"
+            value={cvv}
+            onChange={(e) => setCvv(e.target.value)}
+          />
+        </div>
+      </div>
+    </div>
+
+    {/* ---- Total ---- */}
+    <div>
+      <p className="text-lg">
+        Total Price: <span className="font-bold">tk {totalPrice}</span>
+      </p>
+    </div>
+
+    <button
+      type="submit"
+      className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold shadow hover:bg-blue-700 transition"
+    >
+      Book Now
+    </button>
+  </form>
+</div>
+
       </div>
 
       {/* Description & Introduction */}

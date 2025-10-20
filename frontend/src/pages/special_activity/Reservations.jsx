@@ -367,6 +367,7 @@ const MyReservations = () => {
   const [hotelReservations, setHotelReservations] = useState([]);
   const [tourReservations, setTourReservations] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(tourReservations,"tour");
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "N/A";
@@ -392,6 +393,7 @@ const MyReservations = () => {
 
         const userName = userRes.data?.name;
         const userEmail = userRes.data?.email;
+        console.log(userName,userEmail,id,"user");
 
         const vehicleRes = await axios.get(`http://localhost:5000/api/vehiclereservation/traveler/${id}`);
         setVehicleReservations(vehicleRes.data || []);
@@ -417,6 +419,9 @@ const MyReservations = () => {
 
     fetchAllReservations();
   }, [id]);
+
+
+
 
   const downloadPDF = () => {
     const doc = new jsPDF("p", "mm", "a4");
@@ -576,7 +581,7 @@ const MyReservations = () => {
                 <div className="space-y-1">
                   <p><span className="font-semibold text-gray-600">City:</span> {res.city || "N/A"}</p>
                   <p><span className="font-semibold text-gray-600">Guests:</span> {res.guestCount || "N/A"}</p>
-                  <p><span className="font-semibold text-gray-600">Price:</span> {res.price || "N/A"} tk</p>
+                  <p><span className="font-semibold text-gray-600">Price:</span> {res.price||res.totalPrice || "N/A"} tk</p>
                 </div>
               </div>
             ))}

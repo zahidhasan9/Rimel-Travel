@@ -159,10 +159,11 @@ const TourReservations = () => {
   const columns = [
     { field: "firstName", headerName: "First Name", width: 150 },
     { field: "lastName", headerName: "Last Name", width: 150 },
-    { field: "currentUser", headerName: "User Email", width: 200 },
+     { field: "price", headerName: "Price", width: 150 },
+    { field: "currentUser", headerName: "User Email", width: 250 },
     { field: "phone", headerName: "Phone", width: 150 },
     { field: "guestCount", headerName: "Guest Count", width: 120 },
-    { field: "city", headerName: "city", width: 120 },
+    { field: "city", headerName: "city", width: 150 },
     {
       field: "date",
       headerName: "Date",

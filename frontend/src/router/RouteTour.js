@@ -29,6 +29,11 @@ import {
   vehicleColumns,
   vehicleReservationColumns,
 } from "../components/datatable/datatablesource";
+import AllInTourAdmin from "../pages/AllInTourAdmin";
+import AddAllOneTour from "../pages/AddAllOneTour";
+import AllInOneTourReservation from "../pages/Allinonetourreservation";
+import Allinoneresurvation from "../pages/Allinoneresurvation";
+import AdminMessages from "../pages/AdminMessages";
 import Vehiclelist from "../pages/Vehiclelist";
 import VehiclereservationView from "../pages/VehiclereservationView";
 import  Trainreservasion  from "../pages/Trainreservasion";
@@ -119,6 +124,11 @@ const RouteTour = () => {
         }
       />
       <Route path="/register" element={<Register />} />
+      <Route path="/allintouradmin" element={<AllInTourAdmin />} />
+      <Route path="/addallOnetour" element={<AddAllOneTour />} />
+      <Route path="/allInOnetourreservation" element={<AllInOneTourReservation />} />
+      <Route path="/allinoneresurvation/:id" element={<Allinoneresurvation />} />
+       <Route path="/adminMessages" element={<AdminMessages />} />
 
       <Route
         path="/users"

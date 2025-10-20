@@ -36,8 +36,11 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 
 //ishara
+const AllInOneTourRouter = require("./routes/AllInOneTour");
+app.use("/api/allinonetours", AllInOneTourRouter);
 const tourRouter = require("./routes/tourRouter");
 app.use("/api/tours", tourRouter);
+
 
 //yasiru
 const vehicleRouter = require("./routes/vehicles");

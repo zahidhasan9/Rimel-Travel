@@ -42,7 +42,7 @@ const BlogPage = () => {
       id: 3,
       title: "The Ancient Heritage of Paharpur 🏛️",
       image:
-        "https://scontent.cdninstagram.com/v/t51.75761-15/474108375_18367597135190724_5930696339414316563_n.webp?_nc_cat=108&ig_cache_key=MzU0ODA1OTQ5NDYwMzE3OTkyNQ%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4NzIxLnNkci5DMyJ9&_nc_ohc=FPSmAB3HXw8Q7kNvwFOXOPu&_nc_oc=AdlxOCvRa5nPtx8Trjgu8SweiYaSd4fqusdodHMSRRQlGyLWt9qLkAsxObzg5c1zEoE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=1EbC2UdQmoydokHdr7R8kg&oh=00_Afd5xJXUKpU0L0d3Qxu6Gqqh9YPQitQtj9QV6u8pTD-DCA&oe=68EF2B05",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE5Yn5-jtXZVfBRITS-UHB7-hO6kraFLdsb8f37gsyR1CHT5qU2Dj4z7BgcxISaObMBYU&usqp=CAU",
       description:
         "Step into history at the ancient ruins of Paharpur — a UNESCO World Heritage site reflecting the glory of ancient Bengal.",
       content: `

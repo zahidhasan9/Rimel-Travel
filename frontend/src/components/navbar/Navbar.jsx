@@ -9,7 +9,7 @@ const inside_nav = [
   { path: "/hotelhome", display: "Hotels" },
   { path: "/tours/home", display: "Tour Packages" },
   { path: "/vehicles", display: "Vehicles" },
-  // { path: "/Restaurants", display: "Restaurants" },
+  { path: "/allInOnetourreservation", display: "Super Deal" },
   // { path: "/events", display: "Events" },
   { path: "/TrainHome", display: "Trains" },
 ];

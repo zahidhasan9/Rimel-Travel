@@ -1,3 +1,6 @@
+// 
+
+
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -18,16 +21,33 @@ const ContactUs = () => {
       return;
     }
 
-    // Realistic demo success
+    // পুরনো messages নিন localStorage থেকে
+    const existingMessages =
+      JSON.parse(localStorage.getItem("contactMessages")) || [];
+
+    // নতুন message তৈরি করুন
+    const newMessage = {
+      id: Date.now(),
+      name,
+      email,
+      message,
+      date: new Date().toLocaleString(),
+    };
+
+    // সব message একসাথে রাখুন
+    const updatedMessages = [...existingMessages, newMessage];
+    localStorage.setItem("contactMessages", JSON.stringify(updatedMessages));
+
+    // Success alert
     Swal.fire({
       icon: "success",
       title: "Message Sent",
-      text: "Thank you! Your message has been received. We will contact you soon.",
+      text: "Thank you! Your message has been received.",
       timer: 2500,
       showConfirmButton: false,
     });
 
-    // clear form
+    // Clear form
     setName("");
     setEmail("");
     setMessage("");
@@ -38,9 +58,7 @@ const ContactUs = () => {
       <section className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12">
         {/* Contact Form */}
         <div className="bg-white p-10 rounded-2xl shadow-md">
-          <h2 className="text-3xl font-bold text-[#41A4FF] mb-6">
-            Contact Us
-          </h2>
+          <h2 className="text-3xl font-bold text-[#41A4FF] mb-6">Contact Us</h2>
           <p className="text-gray-600 mb-8">
             Have questions about traveling in Bangladesh? Send us a message and
             our travel experts will get back to you promptly.
@@ -78,7 +96,7 @@ const ContactUs = () => {
           </form>
         </div>
 
-        {/* Info / FAQ Section */}
+        {/* Info Section */}
         <div className="space-y-6">
           <h2 className="text-3xl font-bold text-[#41A4FF] mb-2">Useful Info</h2>
 
