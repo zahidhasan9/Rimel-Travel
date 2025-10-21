@@ -34,6 +34,7 @@ import AddAllOneTour from "../pages/AddAllOneTour";
 import AllInOneTourReservation from "../pages/Allinonetourreservation";
 import Allinoneresurvation from "../pages/Allinoneresurvation";
 import AdminMessages from "../pages/AdminMessages";
+import SupportMap from "../pages/SupportMap";
 import Vehiclelist from "../pages/Vehiclelist";
 import VehiclereservationView from "../pages/VehiclereservationView";
 import  Trainreservasion  from "../pages/Trainreservasion";
@@ -128,7 +129,8 @@ const RouteTour = () => {
       <Route path="/addallOnetour" element={<AddAllOneTour />} />
       <Route path="/allInOnetourreservation" element={<AllInOneTourReservation />} />
       <Route path="/allinoneresurvation/:id" element={<Allinoneresurvation />} />
-       <Route path="/adminMessages" element={<AdminMessages />} />
+      <Route path="/adminMessages" element={<AdminMessages />} />
+      <Route path="/map" element={<SupportMap />} />
 
       <Route
         path="/users"

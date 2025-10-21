@@ -12,6 +12,7 @@ const inside_nav = [
   { path: "/allInOnetourreservation", display: "Super Deal" },
   // { path: "/events", display: "Events" },
   { path: "/TrainHome", display: "Trains" },
+  { path: "/map", display: "Emergency Support" },
 ];
 
 const Navbar = () => {

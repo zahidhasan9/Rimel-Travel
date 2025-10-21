@@ -571,9 +571,9 @@ const TourDetails = () => {
               className="rounded-xl shadow-md hover:scale-105 transition-transform"
             />
             <div className="flex flex-col gap-4">
-              <Link to='/' className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
+              {/* <Link to='/' className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Download Brochure
-              </Link>
+              </Link> */}
               {/* <Link to='/blog' className="bg-gradient-to-r from-green-400 to-teal-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Ask A Question
               </Link> */}

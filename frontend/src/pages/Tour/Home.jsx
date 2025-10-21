@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 import CustomForm from "./Services/CustomForm";
 
-import welcome from "../../assets/Tour/Tour-Welcome.jpg";
+import welcome from "../../assets/images/welcome.png";
 
 const Home = () => {
   return (
