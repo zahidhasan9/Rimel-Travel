@@ -40,6 +40,8 @@ const TourDetails = () => {
     initTE({ Stepper, Ripple, Input, Datepicker });
   }, [id]);
 
+
+
   // Form Submit Handler
   const inputHandler = async (e) => {
     e.preventDefault();
@@ -64,6 +66,14 @@ const TourDetails = () => {
     //   return;
     // }
 
+   
+// Convert to Date object
+const startDate = new Date(date);
+const endDate = new Date(startDate);
+endDate.setDate(startDate.getDate() + allTours?.duration);
+const formattedEndDate = endDate.toISOString().split("T")[0];
+
+
     const tourReservation = {
       currentUser,
       firstName,
@@ -73,6 +83,8 @@ const TourDetails = () => {
       guestCount:allTours.groupCount,
       city:allTours.cities,
       price: allTours.totalPrice,
+      endDate: formattedEndDate,
+      duration: allTours.duration,
     };
 
     try {
@@ -155,9 +167,9 @@ const TourDetails = () => {
               className="rounded-xl shadow-md hover:scale-105 transition-transform"
             />
             <div className="flex flex-col gap-4">
-              <Link to='/' className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
+              {/* <Link to='/' className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Download Brochure
-              </Link>
+              </Link> */}
               {/* <Link to='/blog' className="bg-gradient-to-r from-green-400 to-teal-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Ask A Question
               </Link> */}

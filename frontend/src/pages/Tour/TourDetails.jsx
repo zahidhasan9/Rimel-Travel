@@ -459,6 +459,10 @@ const TourDetails = () => {
     initTE({ Stepper, Ripple, Input, Datepicker });
   }, [id]);
 
+  console.log(date,"date");
+
+  console.log(allTours.duration,"duration");
+
   // Form Submit Handler
   const inputHandler = async (e) => {
     e.preventDefault();
@@ -483,7 +487,33 @@ const TourDetails = () => {
       return;
     }
 
-    const tourReservation = {
+//     const startDateParts = date.split("-");
+// const startYear = parseInt(startDateParts[0]);
+// const startMonth = parseInt(startDateParts[1]) - 1; // 0-based month
+// const startDay = parseInt(startDateParts[2]);
+
+
+// const startDate = new Date(startYear, startMonth, startDay);
+// const endDate = new Date(startDate);
+// endDate.setDate(startDate.getDate() + Number(allTours.duration));
+
+
+// const formattedStartDate = startDate.toISOString().split("T")[0];
+// const formattedEndDate = endDate.toISOString().split("T")[0];
+// console.log(formattedEndDate,"enddate");
+const duration = allTours?.duration;
+const calculateEndDate = (startDateString, duration) => {
+  const [year, month, day] = startDateString.split("-").map(Number);
+  const start = new Date(year, month - 1, day); // local date
+  const end = new Date(start);
+  end.setDate(start.getDate() + Number(duration)+1);
+  return end.toISOString().split("T")[0];
+};
+
+const formattedEndDate = calculateEndDate(date, duration);
+console.log(formattedEndDate, "end date");
+    
+const tourReservation = {
       currentUser,
       firstName,
       lastName,
@@ -492,6 +522,8 @@ const TourDetails = () => {
       guestCount,
       city:allTours.cities,
       price: totalPrice,
+      endDate: formattedEndDate,
+      duration: allTours.duration,
     };
 
     try {

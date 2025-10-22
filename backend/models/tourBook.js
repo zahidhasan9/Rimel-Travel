@@ -32,6 +32,12 @@ const tourBook = new Schema({
   price: {
     type: String,
   },
+  endDate: {
+    type: String,
+  },
+  duration: {
+    type: String,
+  },
 });
 
 const tourReservation = mongoose.model("tour Reservation", tourBook);

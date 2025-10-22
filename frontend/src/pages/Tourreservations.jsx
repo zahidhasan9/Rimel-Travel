@@ -171,6 +171,13 @@ const TourReservations = () => {
       valueGetter: (params) =>
         new Date(params.row.date).toLocaleDateString(),
     },
+    {
+      field: "endDate",
+      headerName: "End Date",
+      width: 150,
+      valueGetter: (params) =>
+        new Date(params.row.endDate).toLocaleDateString(),
+    },
   ];
 
   // Filtered list for search
