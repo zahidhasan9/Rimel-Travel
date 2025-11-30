@@ -6,7 +6,17 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        'scroll-left': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        'scroll-left': 'scroll-left 15s linear infinite',
+      },
+    },
   },
   plugins: [require("tw-elements/dist/plugin")],
 };

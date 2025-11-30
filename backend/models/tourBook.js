@@ -38,6 +38,7 @@ const tourBook = new Schema({
   duration: {
     type: String,
   },
+  medicRequired: { type: String, enum: ["yes", "no"], default: "no" },
 });
 
 const tourReservation = mongoose.model("tour Reservation", tourBook);

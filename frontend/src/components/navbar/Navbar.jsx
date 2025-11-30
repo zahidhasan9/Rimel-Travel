@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
@@ -29,6 +29,14 @@ const Navbar = () => {
     return classes.filter(Boolean).join(" ");
   }
 
+  const [wishlistCount, setWishlistCount] = useState(0);
+
+  useEffect(() => {
+    
+    const localWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    setWishlistCount(localWishlist.length);
+  }, []);
+
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-36">
@@ -46,7 +54,8 @@ const Navbar = () => {
 
             <Menu as="div" className="relative inline-block text-left">
               <Menu.Button className="flex items-center gap-1 hover:text-[#41A4FF] transition font-medium">
-                Reservations <ChevronDownIcon className="h-5 w-5 text-gray-500" />
+                Reservations{" "}
+                <ChevronDownIcon className="h-5 w-5 text-gray-500" />
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -65,7 +74,9 @@ const Navbar = () => {
                           <Link
                             to={item.path}
                             className={classNames(
-                              active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
                               "block px-4 py-2 text-sm"
                             )}
                           >
@@ -78,7 +89,7 @@ const Navbar = () => {
                 </Menu.Items>
               </Transition>
             </Menu>
-            
+
             <Link to="/aboutus" className="hover:text-[#41A4FF] transition">
               About us
             </Link>
@@ -87,6 +98,17 @@ const Navbar = () => {
             </Link>
             <Link to="/blog" className="hover:text-[#41A4FF] transition">
               Blog
+            </Link>
+            <Link
+              to="/wishlist"
+              className="relative hover:text-[#41A4FF] transition"
+            >
+              Wish List
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-4 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
           </div>
 
@@ -120,7 +142,9 @@ const Navbar = () => {
                           <Link
                             to="/profile"
                             className={classNames(
-                              active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
                               "block px-4 py-2 text-sm"
                             )}
                           >
@@ -133,7 +157,9 @@ const Navbar = () => {
                           <button
                             onClick={handleLogout}
                             className={classNames(
-                              active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
                               "block w-full px-4 py-2 text-left text-sm"
                             )}
                           >
@@ -206,7 +232,9 @@ const Navbar = () => {
                           <Link
                             to={item.path}
                             className={classNames(
-                              active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
                               "block px-4 py-2 text-sm"
                             )}
                           >

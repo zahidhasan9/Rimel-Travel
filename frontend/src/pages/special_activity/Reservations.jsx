@@ -478,7 +478,7 @@ const MyReservations = () => {
       y += 8;
       tourReservations.forEach((res, idx) => {
         addLine(
-          `${idx + 1}. Name: ${res.firstName || ""} ${res.lastName || ""}, City: ${res.city || "N/A"}, Guests: ${res.guestCount || "N/A"},Duration: ${res.duration || "N/A"} Days, Price: ${res.price || "N/A"} tk, Date: ${formatDate(res.date || res.reservationDate)},End Date: ${formatDate(res.date || res.endDate)}`
+          `${idx + 1}. Name: ${res.firstName || ""} ${res.lastName || ""}, City: ${res.city || "N/A"}, Guests: ${res.guestCount || "N/A"}, Medic Person: ${res.medicRequired || "N/A"} ,Duration: ${res.duration || "N/A"} Days, Price: ${res.price || "N/A"} tk, Date: ${formatDate(res.date || res.reservationDate)},End Date: ${formatDate(res.date || res.endDate)}`
         );
       });
     }
@@ -583,6 +583,7 @@ const MyReservations = () => {
                   <p><span className="font-semibold text-gray-600">Guests:</span> {res.guestCount || "N/A"}</p>
                   <p><span className="font-semibold text-gray-600">Duration:</span> {res.duration || "N/A"}</p>
                   <p><span className="font-semibold text-gray-600">Price:</span> {res.price||res.totalPrice || "N/A"} tk</p>
+                   <p><span className="font-semibold text-gray-600">Medic Person:</span> {res.medicRequired || "N/A"}</p>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-bold text-gray-700">End Tour</span>

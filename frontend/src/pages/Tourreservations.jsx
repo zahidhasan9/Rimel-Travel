@@ -163,6 +163,7 @@ const TourReservations = () => {
     { field: "currentUser", headerName: "User Email", width: 250 },
     { field: "phone", headerName: "Phone", width: 150 },
     { field: "guestCount", headerName: "Guest Count", width: 120 },
+    { field: "medicRequired", headerName: "Medic Required", width: 120 },
     { field: "city", headerName: "city", width: 150 },
     {
       field: "date",

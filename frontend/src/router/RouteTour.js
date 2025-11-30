@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Admin from "../pages/Admin";
 import AboutUs from "../pages/AboutUs";
+import Headline from "../pages/HeadLine";
 import Blog from "../pages/Blog"
 import FAQ from "../pages/Faq";
 import Policy from "../pages/Policy";
@@ -86,6 +87,7 @@ import ReviewPanel from "../pages/train/ReviewPanel";
 import MyTickets from "../pages/train/MyTickets";
 import MyOneTicket from "../pages/train/MyOneTicket";
 import TravelerHome from "../pages/train/TravelerHome";
+import WishList from "../pages/WishList";
 
 import { Main } from "../pages/Main";
 import Refund from "../components/Refund";
@@ -110,6 +112,8 @@ const RouteTour = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/aboutus" element={<AboutUs />} />
+       <Route path="/wishlist" element={<WishList />} />
+       <Route path="/addheadline" element={<Headline />} />
       <Route path="/blog" element={<Blog/>} />
       <Route path="/faq" element={<FAQ/>} />
       <Route path="/policy" element={<Policy/>} />
