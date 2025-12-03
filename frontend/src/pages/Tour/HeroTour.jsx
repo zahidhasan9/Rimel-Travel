@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 
 const image = {
   backgroundImage:
-    "url('https://royalbengaltours.com/wp-content/uploads/2019/08/Colorful-Fishing-Boats-Populate-Coxs-Bazar-Beach-700x524.webp')",
+    "url('https://media1.thrillophilia.com/filestore/tqoi06pkedw6xqpbapzvkhgylfu8_28849d88548b64a6f18ef8dd65b07539.jpg?w=1440&dpr=2')",
   height: "600px",
   backgroundPosition: "center",
   backgroundSize: "cover",
@@ -16,7 +16,7 @@ const HeroTour = () => {
     <div className="relative">
       {/* Background image with soft overlay */}
       <div style={image} className="relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/30"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
 
         {/* Centered content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 md:px-0">

@@ -1,47 +1,28 @@
+
+
 import React, { useEffect, useState } from "react";
 import NavigatedMenu from "../navbar/NavigatedMenu";
 import TourNav from "../navbar/TourNav";
 import HeroTour from "../../pages/Tour/HeroTour";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Beach = () => {
   const location = useLocation();
   const path = location.pathname;
-  const title = path.split("/").pop();
-  console.log("title", title);
+  const title = path.split("/").pop().toLowerCase();
 
   const [filterdTours, setTour] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // const getTours = async () => {
-  //   try {
-  //     const response = await axios.get("/tours");
-  //     const tours = response.data.filter((tour) => {
-  //       const category = tour.category.toLowerCase().replace(/\s+/g, "");
-  //       console.log("category", category);
-  //       return category === title;
-  //     });
-
-  //     console.log(tours);
-  //     setTour(tours);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // getTours();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const getTours = async () => {
       try {
         const response = await axios.get("/tours");
+
         const tours = response.data.filter((tour) => {
           const category = tour.category.toLowerCase().replace(/\s+/g, "");
-          console.log("category", category);
           return category === title;
         });
 
@@ -54,7 +35,39 @@ const Beach = () => {
     };
 
     getTours();
-  }, [title]); // <-- dependency যোগ করা জরুরি
+  }, [title]);
+
+  const handleAddToWishlist = (tour) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user?._id) {
+      return alert("Please login first!");
+    }
+
+    const existing = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    const alreadyAdded = existing.some(
+      (item) => item.tourId === tour._id && item.userId === user._id
+    );
+
+    if (alreadyAdded) {
+      return alert("Already added to wishlist!");
+    }
+
+    const newItem = {
+      userId: user._id,
+      tourId: tour._id,
+      name: tour.name,
+      price: tour.price,
+      img: tour.img,
+      link: `/tours/${tour._id}`,
+    };
+
+    const updatedList = [...existing, newItem];
+    localStorage.setItem("wishlist", JSON.stringify(updatedList));
+    setShowModal(true);
+  };
+
   return (
     <div>
       <HeroTour />
@@ -62,73 +75,87 @@ const Beach = () => {
       <TourNav />
 
       {loading ? (
-        <div className="text-center text-lg">
-          <div
-            class="inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
-            role="status"
-          >
-            <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Loading...
-            </span>
-          </div>
+        <div className="text-center text-lg py-20">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
         </div>
       ) : (
         <div>
           {filterdTours.length !== 0 ? (
-            <div className="bg-white grid grid-cols-4 px-36 gap-10 mb-20">
-              {filterdTours.map((tours) => (
-                <div>
-                  <div
-                    key={tours._id}
-                    className="group relative  rounded-t-3xl shadow-2xl rounded-b-xl border-2 "
-                  >
-                    <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 lg:aspect-none group-hover:opacity-40 lg:h-80">
+            <div className="bg-white grid 
+              grid-cols-1 
+              sm:grid-cols-2 
+              lg:grid-cols-3 
+              xl:grid-cols-4 
+              px-4 sm:px-10 lg:px-20 xl:px-32 
+              gap-6 sm:gap-8 lg:gap-10 
+              mb-20 mt-10">
+
+              {filterdTours.map((tour) => (
+                <div key={tour._id} className="w-full">
+                  <div className="group relative rounded-2xl shadow-xl border">
+                    <div className="h-56 sm:h-64 md:h-72 lg:h-80 w-full overflow-hidden rounded-t-2xl bg-gray-200 group-hover:opacity-80 transition">
                       <img
-                        src={tours.img}
+                        src={tour.img}
                         alt="Tour"
-                        className="h-full w-full object-cover object-center rounded-3xl lg:h-full lg:w-full"
+                        className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="mt-4 flex justify-between p-3">
-                      <h3 className="text-2xl font-bold text-gray-700">
-                        <Link to={`/tours/${tours._id}`}>
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-0 rounded-t-3xl "
-                          />
-                          {tours.name}
-                        </Link>
-                        <p className="text-lg font-medium text-gray-900">
-                          {tours.duration} days
-                        </p>
+
+                    <div className="p-4">
+                      <h3 className="text-xl font-bold text-gray-700">
+                        <Link to={`/tours/${tour._id}`}>{tour.name}</Link>
                       </h3>
-                      {/* <div className=" flex flex-row mr-2 space-x-3">
-                  <p className="mt-1 text-lg text-gray-500 ">{tours.avgRating}</p>
-                  <AiFillStar className="text-xl mt-2 text-yellow-500 " />
-                  <p className="mt-1 text-lg">({tours.reviews.length})</p>
-                </div> */}
-                    </div>
-                    <div className="flex flex-row mr-2 space-x-3 justify-between">
-                      <p className="text-sm text-left p-2 font-bold">
-                        From {tours.price} Tk
+                      <p className="text-md font-medium text-gray-900">
+                        {tour.duration} days
                       </p>
-                      <button
-                        type="button"
-                        data-te-ripple-init
-                        data-te-ripple-color="light"
-                        class="mb-2 inline-block rounded bg-primary px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                        onClick={console.log(tours._id)}
-                      >
-                        <Link to={`/tours/${tours._id}`}>View Details</Link>
-                      </button>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-3 p-4">
+                      <p className="text-sm font-bold">From {tour.price} Tk</p>
+
+                      <div className="flex w-full sm:w-auto justify-between gap-3">
+                        <Link
+                          to={`/tours/${tour._id}`}
+                          className="flex-1 text-center bg-blue-600 text-white p-2 rounded-xl shadow-md"
+                        >
+                          View
+                        </Link>
+
+                        <button
+                          onClick={() => handleAddToWishlist(tour)}
+                          className="flex-1 bg-green-600 text-white p-2 rounded-xl shadow-md"
+                        >
+                          Wish
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center text-lg mb-20">
-              No Matching Items Found
+            <div className="text-center text-lg mb-20">No Matching Items Found</div>
+          )}
+
+          {showModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+              <div className="bg-white px-8 py-6 rounded-2xl shadow-xl">
+                <h2 className="text-2xl font-bold text-green-600 text-center">
+                  Wishlist Added!
+                </h2>
+                <p className="text-gray-700 mt-2 text-center">
+                  Tour added to your wishlist successfully.
+                </p>
+
+                <div className="mt-5 flex justify-center">
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="px-5 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition"
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>

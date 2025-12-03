@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
         {/* Branding */}
         <div className="flex flex-col gap-4">
-          <h3 className="text-3xl font-bold text-[#41A4FF]">Travely</h3>
+          <h3 className="text-3xl font-bold text-[#41A4FF]">Trip Vibe</h3>
           <p className="text-gray-400">
             Explore Bangladesh effortlessly with Travely. Book hotels, tours,
             vehicles, and enjoy a seamless travel experience.
@@ -65,6 +65,10 @@ const Footer = () => {
             <li className="hover:text-white transition duration-300 cursor-pointer">
               
               <Link to="/TrainHome"> Train</Link>
+            </li>
+              <li className="hover:text-white transition duration-300 cursor-pointer">
+              
+              <Link to="/allInOnetourreservation"> Super Deal</Link>
             </li>
             {/* <li className="hover:text-white transition duration-300 cursor-pointer">
               Events

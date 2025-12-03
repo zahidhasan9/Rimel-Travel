@@ -2,15 +2,84 @@ import React, { useState, useEffect } from "react";
 
 const BlogPage = () => {
   // ====== Blog Data ======
+  // const blogs = [
+  //   {
+  //     id: 1,
+  //     title: "Exploring the Beauty of Cox’s Bazar 🌊",
+  //     image:
+  //       "https://images.unsplash.com/photo-1594993877167-a08f13013dc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
+  //     description:
+  //       "Discover the world’s longest sea beach — from sunrise walks to seafood feasts, here’s why Cox’s Bazar is a must-visit destination.",
+  //     content: `
+  //     Cox’s Bazar isn’t just the longest sea beach in the world — it’s a place that captures the soul of Bangladesh’s coastal life. 
+  //     The sound of waves, the golden sand, and the smell of fresh seafood make it a paradise for travelers.
+
+  //     From early morning boat rides to sunset beach volleyball, every moment here is filled with joy. 
+  //     You’ll also find Buddhist temples, tribal markets, and scenic hills that add color to the experience.
+
+  //     Whether you’re a solo traveler, a couple, or a family — Cox’s Bazar welcomes everyone with open arms and unforgettable memories.
+  //     `,
+  //     date: "October 10, 2025",
+  //     author: "Travel Bangladesh",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Discovering the Tea Gardens of Sylhet 🍃",
+  //     image:
+  //       "https://images.unsplash.com/photo-1627895457805-c7bf42cb9873?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+  //     description:
+  //       "Sylhet is a land of green — tea gardens, waterfalls, and mountains make it one of the most beautiful regions of Bangladesh.",
+  //     content: `
+  //     Sylhet’s rolling tea estates and crystal-clear waterfalls make it one of the most picturesque places in Bangladesh. 
+  //     Tourists love to explore the green tea valleys, take a boat ride on Lalakhal, and enjoy the local hospitality.
+
+  //     Jaflong, Ratargul Swamp Forest, and Bichanakandi are some of the must-see spots for nature lovers.
+  //     `,
+  //     date: "October 8, 2025",
+  //     author: "Green Escape",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "The Ancient Heritage of Paharpur 🏛️",
+  //     image:
+  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE5Yn5-jtXZVfBRITS-UHB7-hO6kraFLdsb8f37gsyR1CHT5qU2Dj4z7BgcxISaObMBYU&usqp=CAU",
+  //     description:
+  //       "Step into history at the ancient ruins of Paharpur — a UNESCO World Heritage site reflecting the glory of ancient Bengal.",
+  //     content: `
+  //     Paharpur’s Somapura Mahavihara is one of the most important archaeological sites in South Asia. 
+  //     It was once a great Buddhist monastery that attracted scholars from all over the world.
+
+  //     The vast ruins, intricate terracotta designs, and spiritual ambiance make it a fascinating destination for history lovers.
+  //     `,
+  //     date: "October 5, 2025",
+  //     author: "Heritage Explorer",
+  //   },
+  //   {
+  //   id: 4,
+  //   title: "Exploring the Beauty of Cox’s Bazar 🌊",
+  //   image: "...",
+  //   description: "...",
+  //   content: "...",
+  //   date: "October 10, 2025",
+  //   author: "Travel Bangladesh",
+
+  //   // ➤ New: YouTube Videos
+  //   videoLinks: [
+  //     "https://www.youtube.com/watch?v=K1QICrgxTjA",
+  //     "https://www.youtube.com/watch?v=z2X2HaTvkl8"
+  //   ]
+  // },
+  // ];
+
   const blogs = [
-    {
-      id: 1,
-      title: "Exploring the Beauty of Cox’s Bazar 🌊",
-      image:
-        "https://images.unsplash.com/photo-1594993877167-a08f13013dc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
-      description:
-        "Discover the world’s longest sea beach — from sunrise walks to seafood feasts, here’s why Cox’s Bazar is a must-visit destination.",
-      content: `
+  {
+    id: 1,
+    title: "Exploring the Beauty of Cox’s Bazar 🌊",
+    image:
+      "https://images.unsplash.com/photo-1594993877167-a08f13013dc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
+    description:
+      "Discover the world’s longest sea beach — from sunrise walks to seafood feasts, here’s why Cox’s Bazar is a must-visit destination.",
+    content: `
       Cox’s Bazar isn’t just the longest sea beach in the world — it’s a place that captures the soul of Bangladesh’s coastal life. 
       The sound of waves, the golden sand, and the smell of fresh seafood make it a paradise for travelers.
 
@@ -18,43 +87,69 @@ const BlogPage = () => {
       You’ll also find Buddhist temples, tribal markets, and scenic hills that add color to the experience.
 
       Whether you’re a solo traveler, a couple, or a family — Cox’s Bazar welcomes everyone with open arms and unforgettable memories.
-      `,
-      date: "October 10, 2025",
-      author: "Travel Bangladesh",
-    },
-    {
-      id: 2,
-      title: "Discovering the Tea Gardens of Sylhet 🍃",
-      image:
-        "https://images.unsplash.com/photo-1627895457805-c7bf42cb9873?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      description:
-        "Sylhet is a land of green — tea gardens, waterfalls, and mountains make it one of the most beautiful regions of Bangladesh.",
-      content: `
+    `,
+    date: "October 10, 2025",
+    author: "Travel Bangladesh",
+
+    videoLinks: [
+  "https://www.youtube.com/watch?v=zCSmY_WjvPs", // Sylhet long travel vlog
+  "https://www.youtube.com/watch?v=YPxfs_hYOnw", // Ratargul Swamp Forest
+ 
+]
+
+
+
+  },
+
+  {
+    id: 2,
+    title: "Discovering the Tea Gardens of Sylhet 🍃",
+    image:
+      "https://images.unsplash.com/photo-1627895457805-c7bf42cb9873?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    description:
+      "Sylhet is a land of green — tea gardens, waterfalls, and mountains make it one of the most beautiful regions of Bangladesh.",
+    content: `
       Sylhet’s rolling tea estates and crystal-clear waterfalls make it one of the most picturesque places in Bangladesh. 
       Tourists love to explore the green tea valleys, take a boat ride on Lalakhal, and enjoy the local hospitality.
 
       Jaflong, Ratargul Swamp Forest, and Bichanakandi are some of the must-see spots for nature lovers.
-      `,
-      date: "October 8, 2025",
-      author: "Green Escape",
-    },
-    {
-      id: 3,
-      title: "The Ancient Heritage of Paharpur 🏛️",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE5Yn5-jtXZVfBRITS-UHB7-hO6kraFLdsb8f37gsyR1CHT5qU2Dj4z7BgcxISaObMBYU&usqp=CAU",
-      description:
-        "Step into history at the ancient ruins of Paharpur — a UNESCO World Heritage site reflecting the glory of ancient Bengal.",
-      content: `
+    `,
+    date: "October 8, 2025",
+    author: "Green Escape",
+
+    videoLinks: [
+      "https://www.youtube.com/watch?v=1LWDqve_Atc", // Sylhet travel vlog
+      "https://www.youtube.com/watch?v=RYKlri-etso", // Ratargul drone view
+      
+    ]
+  },
+
+  {
+    id: 3,
+    title: "The Ancient Heritage of Paharpur 🏛️",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE5Yn5-jtXZVfBRITS-UHB7-hO6kraFLdsb8f37gsyR1CHT5qU2Dj4z7BgcxISaObMBYU&usqp=CAU",
+    description:
+      "Step into history at the ancient ruins of Paharpur — a UNESCO World Heritage site reflecting the glory of ancient Bengal.",
+    content: `
       Paharpur’s Somapura Mahavihara is one of the most important archaeological sites in South Asia. 
       It was once a great Buddhist monastery that attracted scholars from all over the world.
 
       The vast ruins, intricate terracotta designs, and spiritual ambiance make it a fascinating destination for history lovers.
-      `,
-      date: "October 5, 2025",
-      author: "Heritage Explorer",
-    },
-  ];
+    `,
+    date: "October 5, 2025",
+    author: "Heritage Explorer",
+
+    videoLinks: [
+      "https://www.youtube.com/watch?v=PnvVMoHhQRw", // Paharpur documentary
+      "https://www.youtube.com/watch?v=kVbVzPyHWq8", // Paharpur history vlog
+     
+    ]
+  },
+
+
+];
+
 
   // ====== State ======
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -153,6 +248,36 @@ const BlogPage = () => {
           <p className="text-lg leading-relaxed whitespace-pre-line mb-10">
             {selectedBlog.content}
           </p>
+
+{/* ====== Video Section ====== */}
+{selectedBlog.videoLinks && selectedBlog.videoLinks.length > 0 && (
+  <section className="mb-14">
+    <h3 className="text-2xl font-bold mb-6 text-gray-900">
+      Watch Related Videos 🎬
+    </h3>
+
+    <div className="grid md:grid-cols-2 gap-8">
+      {selectedBlog.videoLinks.map((link, index) => {
+        const embedUrl = link.replace("watch?v=", "embed/");
+        return (
+          <div
+            key={index}
+            className="w-full aspect-video rounded-xl overflow-hidden shadow-lg"
+          >
+            <iframe
+              src={embedUrl}
+              title={`YouTube video ${index}`}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+)}
+
 
           {/* ====== Review Section ====== */}
           <section>

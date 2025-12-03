@@ -47,26 +47,20 @@ const Hero2 = () => {
   const slides = [
     {
       title: "Explore the Beauty of Bangladesh",
-      subtitle:
-        "From Cox’s Bazar to Sylhet – discover hidden gems, lush tea gardens, and natural wonders of Bangladesh.",
-      image:
-        "https://images.unsplash.com/photo-1544750040-4ea9b8a27d38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
+      subtitle: "From Cox’s Bazar to Sylhet – discover hidden gems, lush tea gardens, and natural wonders of Bangladesh.",
+      image: "https://live.staticflickr.com/3526/4063504896_5a36aeebd9_b.jpg",
       button: "Start Your Journey",
     },
     {
       title: "Adventure Awaits in Bandarban",
-      subtitle:
-        "Trek the misty hills, discover hidden waterfalls, and embrace the serenity of nature in Bandarban.",
-      image:
-        "https://media.licdn.com/dms/image/v2/D5612AQHjTPqKnYvkGg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1667450386034?e=1762992000&v=beta&t=pU5Ig8_VTKC3PhIrTDgtFZcNQHY_PodPoA3JkhXgzP8",
+      subtitle: "Trek the misty hills, discover hidden waterfalls, and embrace the serenity of nature in Bandarban.",
+      image: "https://greenbelt.com.bd/wp-content/uploads/2025/08/Bandarban-Tour-Package-1.jpg",
       button: "Discover Now",
     },
     {
       title: "Cultural Heritage of Dhaka",
-      subtitle:
-        "Experience the heartbeat of Bangladesh — vibrant streets, ancient architecture, and authentic flavors.",
-      image:
-        "https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/dten/2023/04/13/dt-165.jpeg",
+      subtitle: "Experience the heartbeat of Bangladesh — vibrant streets, ancient architecture, and authentic flavors.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Mangal_Shobhajatra_in_Dhaka.jpg/1280px-Mangal_Shobhajatra_in_Dhaka.jpg",
       button: "Explore Culture",
     },
   ];
@@ -79,33 +73,38 @@ const Hero2 = () => {
         showThumbs={false}
         showStatus={false}
         interval={6000}
-        transitionTime={1200}
+        transitionTime={1000}
         swipeable
         emulateTouch
       >
         {slides.map((slide, index) => (
-          <div key={index} className="relative h-[85vh]">
+          <div key={index} className="relative h-[85vh] overflow-hidden">
+            {/* ছবি - কোনো darkness নাই */}
             <img
               src={slide.image}
               alt={slide.title}
-              className="object-cover w-full h-full brightness-[0.6]"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-            {/* Content */}
+            
+            <div className="absolute inset-0 bg-black/20"></div>
+
+            
             <div className="absolute inset-0 flex flex-col justify-center items-start px-8 md:px-24 text-white">
-              <div
-                className="backdrop-blur-sm bg-white/10 p-8 md:p-12 rounded-3xl max-w-2xl animate-fadeIn"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <h1 className=" text-gray-200 text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight drop-shadow-xl">
+              <div className="max-w-3xl">
+                {/* সাদা টেক্সট + মোটা বোল্ড + strong shadow যাতে ১০০% পড়া যায় */}
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-2xl text-white">
                   {slide.title}
                 </h1>
-                <p className="text-lg md:text-xl mb-8 text-gray-200 drop-shadow-md">
+                <p className="text-lg md:text-xl lg:text-2xl mb-10 font-medium drop-shadow-2xl text-white/90">
                   {slide.subtitle}
                 </p>
-                <Link to="/tours/home" className="bg-[#41A4FF] hover:bg-white hover:text-[#41A4FF] text-white font-semibold px-8 py-4 rounded-xl shadow-md transition-all duration-300 transform hover:scale-105">
-                  {slide.button}
+
+                <Link
+                  to="/tours/home"
+                  className="inline-block bg-[#41A4FF] hover:bg-white text-white hover:text-[#41A4FF] font-bold px-10 py-5 rounded-full text-lg shadow-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl"
+                >
+                  {slide.button} →
                 </Link>
               </div>
             </div>
