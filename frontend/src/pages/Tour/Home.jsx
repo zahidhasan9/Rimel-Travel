@@ -87,7 +87,7 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
               className="mt-6 px-6 py-3 bg-green-700 text-white font-semibold rounded-full shadow-md hover:bg-green-800 transition-all duration-300"
             >
-              Explore Now
+              {/* Explore Now */}
             </motion.button>
           </motion.div>
 

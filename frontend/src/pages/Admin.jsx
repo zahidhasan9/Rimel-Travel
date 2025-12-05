@@ -359,7 +359,7 @@ const Admin = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4">
-            Traverly{" "}
+            Trip Vibe{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
               Admin
             </span>
